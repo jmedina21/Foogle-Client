@@ -1,0 +1,29 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+
+.home {
+
+  &__title {
+    color: $foogle-primary;
+  }
+
+  &__search-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  &__search-container{
+    // height: 2rem;
+  }
+
+  &__search-icon{
+    width: 1rem;
+
+    &:hover{
+        @include hover;
+    }
+  }
+
+}
