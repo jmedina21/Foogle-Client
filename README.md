@@ -2,8 +2,10 @@
 
 Welcome to the front end of **Foogle.foo**! This React application, built with Vite. It centralises listing of eBay, Craigslist and Facebook Marketplace making it easier for users to compare similar second hand products 
 
-## BackEnd - git clone https://github.com/jmedina21/Foogle-Server.git
-
+## BackEnd
+```bash
+git clone https://github.com/jmedina21/Foogle-Server.git
+```
 ## Table of Contents
 - [Features](#features)
 - [Technologies Used](#technologies-used)
