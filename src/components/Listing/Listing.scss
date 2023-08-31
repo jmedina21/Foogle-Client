@@ -1,0 +1,63 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.listing{
+    margin: 3rem 1rem;
+    width: 288px;
+    border: 1px solid $foogle-primary;
+    border-radius: 10px;
+    
+    &__img-price-container{
+        aspect-ratio: 1/1;
+        position: relative;
+    }
+    
+    &__price{
+        position: absolute;
+        color: $foogle-dark;
+        background-color: $foogle-light;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        border-radius: 9px;
+        margin: 0;
+        padding: 0.2rem 0.4rem;
+    }
+
+    &__img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 9px;
+    }
+
+    &__title{
+        padding: 0 0.7rem 0 0.5rem;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 2; /* Number of lines to display */
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+    }
+
+    &__details{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.5rem 0.3rem;
+    }
+
+    &__location{
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: $foogle-gray;
+        margin: 0;
+    }
+
+    &__origin{
+        background-size: cover;
+        width: 15px;
+        height: 15px;
+        background-color: $foogle-dark;
+    }
+}
