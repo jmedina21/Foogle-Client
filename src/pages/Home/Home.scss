@@ -1,0 +1,44 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+
+.home {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+
+    &__title {
+        color: $foogle-primary;
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    &__search-section{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+    }
+
+    &__search-bar{
+      border: 1px solid $foogle-primary;
+      border-radius: 5px;
+      width: 75vw;
+      @include tablet {
+        width: 50vw;
+      }
+      @include desktop {
+        width: 25vw;
+      }
+    }
+
+    &__search-icon{
+        width: 1rem;
+
+        &:hover{
+            @include hover;
+        }
+    }
+
+}

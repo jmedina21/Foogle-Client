@@ -1,5 +1,5 @@
 import './Home.scss'
-import search from '../assets/icons/search.svg'
+import search from '../../assets/icons/search.svg'
 
 export function Home(){
 
