@@ -2,33 +2,62 @@
 @use '../../styles/mixins' as *;
 
 
-.search {
+.header {
     display: flex;
     flex-direction: column;
-    margin-top: 3rem;
+    margin-top: 1rem;
     padding: 0 1rem;
+    position: relative;
     
-    &__container{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.7rem;
+    &__logo{
+        width: 100px;
+        margin: 0rem auto 1rem 0;
+    }
+  
+    &__signin{
+      position: absolute;
+      top: 0;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    &__signin-text{
+      font-size: 0.60rem;
+      font-weight: 700;
+      margin: 0;
+      margin-right: 0.5rem;
+      color: $foogle-light;
+      text-decoration: none;
+    }  
+    
+    &__signin-icon{
+      width: 1rem;
     }
     
-    &__logo-input-cont{
-        position: relative;
+    &__input-cont{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     &__search-bar{
-      border: 1px solid $foogle-primary;
+      border: 1px solid $foogle-light;
+      background-color: $foogle-dark;
+      color: $foogle-light;
+      padding: 0.2rem 0.4rem;
       border-radius: 5px;
-      width: 75vw;
+      width: 85%;
       // width: 200px;
       @include tablet {
         width: 50vw;
       }
       @include desktop {
         width: 25vw;
+      }
+
+      &::placeholder{
+        color: $foogle-gray;
       }
     }
 
@@ -37,13 +66,6 @@
         &:hover{
             @include hover;
         }
-    }
-
-    &__logo{
-        position: absolute;
-        top: -1.75rem;
-        left: -1.3125rem;
-        width: 120px;
     }
 
 }
