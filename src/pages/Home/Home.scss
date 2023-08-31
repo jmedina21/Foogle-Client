@@ -2,16 +2,19 @@
 @use '../../styles/mixins' as *;
 
 
+
 .home {
+  padding: 0 1rem;
+  
+  &__container{
     display: flex;
     flex-direction: column;
-    margin-top: 5rem;
-
-    &__title {
-        color: $foogle-primary;
-        text-align: center;
-        font-size: 3rem;
-        margin-bottom: 2rem;
+    padding-top: 3rem;
+  }
+  
+    &__logo{
+      width: 150px;
+      margin: 0rem auto 1rem;
     }
 
     &__search-section{
@@ -19,25 +22,44 @@
         align-items: center;
         justify-content: center;
         gap: 0.7rem;
+        position: relative;
     }
 
     &__search-bar{
-      border: 1px solid $foogle-primary;
-      border-radius: 5px;
-      width: 75vw;
-      @include tablet {
-        width: 50vw;
-      }
-      @include desktop {
-        width: 25vw;
+        border: 1px solid $foogle-light;
+        background-color: $foogle-dark;
+        color: $foogle-light;
+        padding: 0.2rem 2rem 0.2rem 0.4rem;
+        border-radius: 5px;
+        width: 100%;
+        @include tablet {
+          width: 50vw;
+        }
+        @include desktop {
+          width: 25vw;
+        }
+    }
+
+    &__search-btn{
+      position: absolute;
+      top: 1px;
+      right: 0.5rem;
+      margin: 0;
+      font-weight: 700;
+      @include tablet{
+        display: none;
       }
     }
 
     &__search-icon{
-        width: 1rem;
-
-        &:hover{
-            @include hover;
+        display: none;
+        @include tablet {
+            display: block;
+            width: 1rem;
+            
+            &:hover{
+                @include hover;
+            }
         }
     }
 
