@@ -1,6 +1,8 @@
 import './App.scss'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Home } from './pages/Home'
+import { Home } from './pages/Home/Home'
+import { Search } from './pages/Search'
+
 
 function App() {
 
@@ -8,6 +10,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/search" element={<Search />} />
                 <Route path="*" element={<h1>Page not found</h1>} />
             </Routes>
         </BrowserRouter>
