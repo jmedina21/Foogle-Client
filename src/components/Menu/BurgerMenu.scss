@@ -1,4 +1,5 @@
 @use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
 
 /* Position and sizing of burger button */
 .bm-burger-button {
@@ -7,27 +8,42 @@
     height: 20px;
     right: 1rem;
     top: 3.75rem;
+    @include tablet {
+      display: none;
+    }
   }
   
   /* Color/shape of burger icon bars */
   .bm-burger-bars {
     background: $foogle-light;
+    @include tablet {
+      display: none;
+    }
   }
   
   /* Color/shape of burger icon bars on hover*/
   .bm-burger-bars-hover {
     background: #a90000;
+    @include tablet {
+      display: none;
+    }
   }
   
   /* Position and sizing of clickable cross button */
   .bm-cross-button {
     height: 24px;
     width: 24px;
+    @include tablet {
+      display: none;
+    }
   }
   
   /* Color/shape of close button cross */
   .bm-cross {
     background: #bdc3c7;
+    @include tablet {
+      display: none;
+    }
   }
   
   /*
@@ -37,7 +53,9 @@
   .bm-menu-wrap {
     position: fixed;
     height: 100%;
-    // display: none;
+    @include tablet {
+      display: none;
+    }
   }
   
   /* General sidebar styles */
@@ -47,6 +65,9 @@
     font-size: 1.15em;
     height: auto !important;
     min-height: 100vh;
+    @include tablet {
+      display: none;
+    }
   }
   
   /* Morph shape necessary with bubble or elastic */
@@ -68,6 +89,9 @@
   /* Styling of overlay */
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+    @include tablet {
+      display: none;
+    }
   }
 
   .menu{

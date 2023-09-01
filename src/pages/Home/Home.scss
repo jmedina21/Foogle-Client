@@ -4,17 +4,63 @@
 
 
 .home {
-  padding: 0 1rem;
+    padding: 0 1rem;
+
+    &__nav{
+      display: none;
+      @include tablet{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1rem;
+        padding-top: 0.3rem;
+      }
+      @include desktop{
+        gap: 2rem;
+      }
+    }
+
+    &__item{
+      color: $foogle-light;
+      text-decoration: none;
+      display: flex !important;
+      align-items: center;
+      gap: 0.5rem;
+      }
   
-  &__container{
-    display: flex;
-    flex-direction: column;
-    padding-top: 3rem;
-  }
+      &__item-text{
+        font-size: 0.75rem;
+        color: $foogle-light;
+        @include desktop{
+          font-size: 1rem;
+        }
+      }
+  
+      &__item-icon{
+        width: 20px;
+        height: 20px;
+        @include desktop{
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        padding-top: 3rem;
+        @include tablet{
+          padding-top: 6rem ;
+        }
+    }
   
     &__logo{
-      width: 150px;
-      margin: 0rem auto 1rem;
+        width: 150px;
+        margin: 0rem auto 1rem;
+        @include tablet{
+          width: 200px;
+          margin-bottom: 2rem;
+        }
     }
 
     &__search-section{
@@ -30,32 +76,39 @@
         background-color: $foogle-dark;
         color: $foogle-light;
         padding: 0.2rem 2rem 0.2rem 0.4rem;
-        border-radius: 5px;
+        border-radius: 10px;
         width: 100%;
         @include tablet {
-          width: 50vw;
+          width: 60%;
+          padding: 0.7rem 2rem 0.7rem 1rem;
         }
         @include desktop {
-          width: 25vw;
+          padding: 1rem;
+          width: 50%;
         }
     }
 
     &__search-btn{
-      position: absolute;
-      top: 1px;
-      right: 0.5rem;
-      margin: 0;
-      font-weight: 700;
-      @include tablet{
-        display: none;
-      }
+        position: absolute;
+        top: 1px;
+        right: 0.5rem;
+        margin: 0;
+        font-weight: 700;
+        @include tablet{
+            top: 4px;
+            right: 20%;
+            font-size: 1.5rem;
+        }
+        @include desktop{
+            display: none;
+        }
     }
 
     &__search-icon{
         display: none;
-        @include tablet {
+        @include desktop {
             display: block;
-            width: 1rem;
+            width: 1.5rem;
             
             &:hover{
                 @include hover;
