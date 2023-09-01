@@ -27,6 +27,13 @@ export function Header({item}){
     }
     return (
         <header className='header'>
+            <div className='header__container'>
+                <img src={logo} alt="logo" className='header__logo' />
+                <div className='header__search-section'>
+                    <input type="text" className='header__search-bar' onChange={handleChange} onKeyDown={searchOnKeyDown} placeholder="Search all second hand markets from one place"/>
+                    <p className='header__search-btn' onClick={searchOnClick} >{`>`}</p>
+                    <img className='header__search-icon' src={searchIcon} alt="search" />
+                </div>
             <nav className='header__nav'>
                 <Link to={'/signin'} className="menu__item">
                     <img className='header__item-icon' src={login} alt="signing" />
@@ -41,13 +48,6 @@ export function Header({item}){
                     <p className='header__item-text'>GITHUB</p>    
                 </a>
             </nav>
-            <div className='header__container'>
-                <img src={logo} alt="logo" className='header__logo' />
-                <div className='header__search-section'>
-                    <input type="text" className='header__search-bar' onChange={handleChange} onKeyDown={searchOnKeyDown} placeholder="Search all second hand markets from one place"/>
-                    <p className='header__search-btn' onClick={searchOnClick} >{`>`}</p>
-                    <img className='header__search-icon' src={searchIcon} alt="search" />
-                </div>
             </div>
         </header>
     )

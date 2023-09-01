@@ -3,72 +3,53 @@
 
 .header {
     padding: 0 1rem;
-
-    &__nav{
-      display: none;
-      @include tablet{
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          gap: 1rem;
-          padding-top: 0.3rem;
-      }
-      @include desktop{
-          gap: 2rem;
-      }
+    @include tablet{
+        padding: 0.5rem 2rem;
     }
-
-    &__item{
-        color: $foogle-light;
-        text-decoration: none;
-        display: flex !important;
-        align-items: center;
-        gap: 0.5rem;
-      }
-  
-      &__item-text{
-        font-size: 0.75rem;
-        color: $foogle-light;
-        @include desktop{
-            font-size: 1rem;
-        }
-      }
-  
-      &__item-icon{
-        width: 20px;
-        height: 20px;
-        @include desktop{
-            width: 25px;
-            height: 25px;
-        }
-      }
-
+    @include desktop{
+        padding: 0.5rem 2rem;
+    }
+    
     &__container{
         display: flex;
         flex-direction: column;
         padding-top: 1rem;
         @include tablet{
-            padding-top: 0rem ;
+            padding-top: 1rem ;
+            flex-direction: row;
+            align-items: center;
         }
     }
-  
+    
     &__logo{
         width: 150px;
         margin: 0rem auto 1rem;
         @include tablet{
+          width: 140px;
+          margin: 0;
+        }
+        @include desktop{
             width: 200px;
-            margin-bottom: 2rem;
         }
     }
-
+    
     &__search-section{
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.7rem;
         position: relative;
+        @include tablet{
+            margin: 0 1rem;
+            flex-grow: 1;
+        }
+        @include desktop{
+            margin: 0 auto;
+            flex-grow: 0;
+            width: 40%;
+        }
     }
-
+    
     &__search-bar{
         border: 1px solid $foogle-light;
         background-color: $foogle-dark;
@@ -77,15 +58,17 @@
         border-radius: 10px;
         width: 100%;
         @include tablet {
-            width: 60%;
             padding: 0.7rem 2rem 0.7rem 1rem;
+            width: 100%;
+            display: flex;
+            flex-grow:  1;
         }
         @include desktop {
             padding: 1rem;
             width: 50%;
         }
     }
-
+    
     &__search-btn{
         position: absolute;
         top: 1px;
@@ -94,14 +77,14 @@
         font-weight: 700;
         @include tablet{
             top: 4px;
-            right: 20%;
+            right: 4%;
             font-size: 1.5rem;
         }
         @include desktop{
             display: none;
         }
     }
-
+    
     &__search-icon{
         display: none;
         @include desktop {
@@ -113,5 +96,45 @@
             }
         }
     }
+    
+    &__nav{
+        display: none;
+        @include tablet{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.6rem;
+            padding-top: 0.3rem;
+            margin-left: auto;
+        }
+        @include desktop{
+            gap: 1.2rem;
+        }
+    }
+    
+    &__item{
+        color: $foogle-light;
+        text-decoration: none;
+        display: flex ;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    &__item-text{
+        font-size: 0.6rem;
+        color: $foogle-light;
+        @include desktop{
+            font-size: 0.8rem;
+        }
+    }
+    
+    &__item-icon{
+        width: 20px;
+        height: 20px;
+        @include desktop{
+            width: 25px;
+            height: 25px;
+        }
+      }
 
 }
