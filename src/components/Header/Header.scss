@@ -20,10 +20,15 @@
             align-items: center;
         }
     }
+
+    &__logo-link{
+        margin: 0rem auto 1rem;
+        
+
+    }
     
     &__logo{
         width: 150px;
-        margin: 0rem auto 1rem;
         @include tablet{
           width: 140px;
           margin: 0;

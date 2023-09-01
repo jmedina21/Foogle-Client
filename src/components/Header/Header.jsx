@@ -17,37 +17,37 @@ export function Header({item}){
     }
 
     function searchOnClick(){
-        navigate(`search/${search}`)
+        navigate(`/search/${search}`)
     }
 
     function searchOnKeyDown(e){
         if(e.key === 'Enter'){
-            navigate(`search/${search}`)
+            navigate(`/search/${search}`)
         }
     }
     return (
         <header className='header'>
             <div className='header__container'>
-                <img src={logo} alt="logo" className='header__logo' />
+                <Link className='header__logo-link' to={'/'}><img src={logo} alt="logo" className='header__logo' /></Link>
                 <div className='header__search-section'>
-                    <input type="text" className='header__search-bar' onChange={handleChange} onKeyDown={searchOnKeyDown} placeholder="Search all second hand markets from one place"/>
+                    <input type="text" className='header__search-bar' onChange={handleChange} onKeyDown={searchOnKeyDown} value={search} placeholder="Search all second hand markets from one place"/>
                     <p className='header__search-btn' onClick={searchOnClick} >{`>`}</p>
                     <img className='header__search-icon' src={searchIcon} alt="search" />
                 </div>
-            <nav className='header__nav'>
-                <Link to={'/signin'} className="menu__item">
-                    <img className='header__item-icon' src={login} alt="signing" />
-                    <p className='header__item-text'>SIGN IN</p>
-                </Link>
-                <Link to={'/favorites'} className="header__item">
-                    <img className='header__item-icon' src={favorites} alt="signing" />
-                    <p className='header__item-text'>FAVORITES</p>
-                </Link>
-                <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="header__item">
-                    <img className='header__item-icon' src={github} alt="signing" />
-                    <p className='header__item-text'>GITHUB</p>    
-                </a>
-            </nav>
+                <nav className='header__nav'>
+                    <Link to={'/signin'} className="menu__item">
+                        <img className='header__item-icon' src={login} alt="signing" />
+                        <p className='header__item-text'>SIGN IN</p>
+                    </Link>
+                    <Link to={'/favorites'} className="header__item">
+                        <img className='header__item-icon' src={favorites} alt="signing" />
+                        <p className='header__item-text'>FAVORITES</p>
+                    </Link>
+                    <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="header__item">
+                        <img className='header__item-icon' src={github} alt="signing" />
+                        <p className='header__item-text'>GITHUB</p>    
+                    </a>
+                </nav>
             </div>
         </header>
     )

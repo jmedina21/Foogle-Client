@@ -1,19 +1,20 @@
-import img from '../../assets/zelda.jpg'
-
 import './Listing.scss'
+import favorite from '../../assets/icons/favorites.svg'
 
-export function Listing(){
+export function Listing({title, price, imageUrl,link, location}){
     
     return (
         <article className='listing'>
             <div className="listing__img-price-container" >
-                <h3 className='listing__price'>$150</h3>
-                <img className='listing__img' src={img} alt="listing" />
+                <h3 className='listing__price'>{price}</h3>
+                <img className='listing__img' src={imageUrl} alt={title} />
             </div>
-            <p className='listing__title'>Legend of Zelda Tears of the Kingdom sadsd asdsa as
-            d asd sadas d sdadas dasdja skd askd sadk hasjdh ajsdh</p>
+            <p className='listing__title'>{title}</p>
             <div className='listing__details'>
-                <p className='listing__location'>Brooklyn</p>
+                <svg className='listin__fav-icon' fill="#0E0E0E" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.16,5A6.29,6.29,0,0,0,12,4.36a6.27,6.27,0,0,0-8.16,9.48l6.21,6.22a2.78,2.78,0,0,0,3.9,0l6.21-6.22A6.27,6.27,0,0,0,20.16,5Zm-1.41,7.46-6.21,6.21a.76.76,0,0,1-1.08,0L5.25,12.43a4.29,4.29,0,0,1,0-6,4.27,4.27,0,0,1,6,0,1,1,0,0,0,1.42,0,4.27,4.27,0,0,1,6,0A4.29,4.29,0,0,1,18.75,12.43Z"/>
+                </svg>
+                <p className='listing__location'>{location}</p>
             </div>
         </article>
     )

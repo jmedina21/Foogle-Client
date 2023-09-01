@@ -2,14 +2,19 @@
 @use '../../styles/mixins' as *;
 
 .listing{
-    margin: 3rem 1rem;
+    // margin: 3rem 1rem;
     width: 288px;
-    border: 1px solid $foogle-primary;
+    // border: 1px solid $foogle-primary;
     border-radius: 10px;
+    background-color: $foogle-secondary;
+    color: $foogle-dark;
+    flex-grow: 1;
     
     &__img-price-container{
         aspect-ratio: 1/1;
         position: relative;
+        border: 1px solid $foogle-dark;
+        border-radius: 10px;
     }
     
     &__price{
@@ -32,10 +37,11 @@
     }
 
     &__title{
+        font-size: 0.875rem;
         padding: 0 0.7rem 0 0.5rem;
         display: -webkit-box;
         overflow: hidden;
-        -webkit-line-clamp: 2; /* Number of lines to display */
+        -webkit-line-clamp: 1; /* Number of lines to display */
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
     }
@@ -52,12 +58,6 @@
         font-weight: 600;
         color: $foogle-gray;
         margin: 0;
-    }
-
-    &__origin{
-        background-size: cover;
-        width: 15px;
-        height: 15px;
-        background-color: $foogle-dark;
+        text-transform: capitalize ;
     }
 }
