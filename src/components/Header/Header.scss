@@ -1,70 +1,116 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
-
 .header {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
     padding: 0 1rem;
-    position: relative;
-    
-    &__logo{
-        width: 100px;
-        margin: 0rem auto 1rem 0;
+
+    &__nav{
+      display: none;
+      @include tablet{
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 1rem;
+          padding-top: 0.3rem;
+      }
+      @include desktop{
+          gap: 2rem;
+      }
+    }
+
+    &__item{
+        color: $foogle-light;
+        text-decoration: none;
+        display: flex !important;
+        align-items: center;
+        gap: 0.5rem;
+      }
+  
+      &__item-text{
+        font-size: 0.75rem;
+        color: $foogle-light;
+        @include desktop{
+            font-size: 1rem;
+        }
+      }
+  
+      &__item-icon{
+        width: 20px;
+        height: 20px;
+        @include desktop{
+            width: 25px;
+            height: 25px;
+        }
+      }
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        padding-top: 1rem;
+        @include tablet{
+            padding-top: 0rem ;
+        }
     }
   
-    &__signin{
-      position: absolute;
-      top: 0;
-      right: 1rem;
-      display: flex;
-      align-items: center;
+    &__logo{
+        width: 150px;
+        margin: 0rem auto 1rem;
+        @include tablet{
+            width: 200px;
+            margin-bottom: 2rem;
+        }
     }
 
-    &__signin-text{
-      font-size: 0.60rem;
-      font-weight: 700;
-      margin: 0;
-      margin-right: 0.5rem;
-      color: $foogle-light;
-      text-decoration: none;
-    }  
-    
-    &__signin-icon{
-      width: 1rem;
-    }
-    
-    &__input-cont{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    &__search-section{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        position: relative;
     }
 
     &__search-bar{
-      border: 1px solid $foogle-light;
-      background-color: $foogle-dark;
-      color: $foogle-light;
-      padding: 0.2rem 0.4rem;
-      border-radius: 5px;
-      width: 85%;
-      // width: 200px;
-      @include tablet {
-        width: 50vw;
-      }
-      @include desktop {
-        width: 25vw;
-      }
+        border: 1px solid $foogle-light;
+        background-color: $foogle-dark;
+        color: $foogle-light;
+        padding: 0.2rem 2rem 0.2rem 0.4rem;
+        border-radius: 10px;
+        width: 100%;
+        @include tablet {
+            width: 60%;
+            padding: 0.7rem 2rem 0.7rem 1rem;
+        }
+        @include desktop {
+            padding: 1rem;
+            width: 50%;
+        }
+    }
 
-      &::placeholder{
-        color: $foogle-gray;
-      }
+    &__search-btn{
+        position: absolute;
+        top: 1px;
+        right: 0.5rem;
+        margin: 0;
+        font-weight: 700;
+        @include tablet{
+            top: 4px;
+            right: 20%;
+            font-size: 1.5rem;
+        }
+        @include desktop{
+            display: none;
+        }
     }
 
     &__search-icon{
-        width: 1rem;
-        &:hover{
-            @include hover;
+        display: none;
+        @include desktop {
+            display: block;
+            width: 1.5rem;
+            
+            &:hover{
+                @include hover;
+            }
         }
     }
 
