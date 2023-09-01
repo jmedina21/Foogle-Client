@@ -22,7 +22,7 @@
     }
 
     &__logo-link{
-        margin: 0rem auto 1rem;
+        margin: 0rem auto;
         
 
     }
@@ -71,6 +71,7 @@
         @include desktop {
             padding: 1rem;
             width: 50%;
+            font-size: 1rem;
         }
     }
     
