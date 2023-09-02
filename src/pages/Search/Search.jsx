@@ -180,12 +180,6 @@ export function Search(){
                 "location": "Hoboken, NJ"
             },
             {
-                "title": "Shop on eBay",
-                "price": "$20.00",
-                "imageUrl": "https://ir.ebaystatic.com/rs/v/fxxj3ttftm5ltcqnto1o4baovyl.png",
-                "link": "https://ebay.com/itm/123456?hash=item28caef0a3a:g:E3kAAOSwlGJiMikD&amdata=enc%3AAQAHAAAAsJoWXGf0hxNZspTmhb8%2FTJCCurAWCHuXJ2Xi3S9cwXL6BX04zSEiVaDMCvsUbApftgXEAHGJU1ZGugZO%2FnW1U7Gb6vgoL%2BmXlqCbLkwoZfF3AUAK8YvJ5B4%2BnhFA7ID4dxpYs4jjExEnN5SR2g1mQe7QtLkmGt%2FZ%2FbH2W62cXPuKbf550ExbnBPO2QJyZTXYCuw5KVkMdFMDuoB4p3FwJKcSPzez5kyQyVjyiIq6PB2q%7Ctkp%3ABlBMULq7kqyXYA"
-            },
-            {
                 "title": "For Gameboy Advance GB/GBA/NDSL The Legend of Zelda Series Game Cartridge USA",
                 "price": "$13.99 to $59.99",
                 "imageUrl": "https://i.ebayimg.com/thumbs/images/g/mbMAAOSwj0Nkmq5X/s-l300.webp",
@@ -222,6 +216,7 @@ export function Search(){
 
 
     // useEffect(() => {
+    //     setListings([])
     //     let promises = []
     //     promises.push(
     //         axios(`http://localhost:2121/listings/facebook?search=${item}`),
@@ -230,6 +225,7 @@ export function Search(){
     //     )
     //     Promise.all(promises)
     //         .then((res) => {
+    //             console.log(res)
     //             res.forEach(arr => {
     //                 setListings(prev => [...prev, ...arr.data])
     //             })
@@ -238,6 +234,44 @@ export function Search(){
     //             console.log(err)
     //         })
     // }, [item])
+
+    // useEffect(() => {
+    //     setListings([])
+    //     let promises = []
+    //     promises.push(
+    //         axios(`http://localhost:2121/listings/facebook?search=${item}`),
+    //         axios(`http://localhost:2121/listings/ebay?search=${item}`),
+    //         axios(`http://localhost:2121/listings/craigslist?search=${item}`)
+    //     )
+    //     Promise.all(promises)
+    //         .then((res) => {
+    //             const facebookListings = res[0].data;
+    //             const ebayListings = res[1].data;
+    //             const craigslistListings = res[2].data;
+    
+    //             const maxLength = Math.max(facebookListings.length, ebayListings.length, craigslistListings.length);
+    
+    //             let mergedListings = [];
+    
+    //             for (let i = 0; i < maxLength; i++) {
+    //                 if (i < facebookListings.length) {
+    //                     mergedListings.push(facebookListings[i]);
+    //                 }
+    //                 if (i < ebayListings.length) {
+    //                     mergedListings.push(ebayListings[i]);
+    //                 }
+    //                 if (i < craigslistListings.length) {
+    //                     mergedListings.push(craigslistListings[i]);
+    //                 }
+    //             }
+    
+    //             setListings(mergedListings);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, [item]);
+    
 
     return (
         <main>
