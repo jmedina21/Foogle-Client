@@ -1,0 +1,75 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.sign{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1.4rem;
+    @include tablet{
+        padding: 4rem 2rem;
+    }
+
+    &__back{
+        position: absolute;
+        top: 4rem;
+        left: 1rem;
+        @include tablet{
+            top: 5rem;
+            left: 10%;
+        }
+        @include desktop{
+            left: 15%;
+        }
+    }
+
+    &__logo{
+        width: 150px;
+        padding-bottom: 2rem;
+        @include tablet{
+            width: 200px;
+        }
+    }
+
+    &__form-title{
+        font-size: 1rem;
+        font-weight: 400;
+        @include tablet{
+            font-size: 1.5rem;
+        }
+    }
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1.4rem;
+        @include tablet{
+            width: 21rem;
+
+        }
+    }
+
+    &__input{
+        background-color: $foogle-dark;
+        color: $foogle-light;
+        border: 1px solid $foogle-light;
+        border-radius: 4px;
+        padding: 0.5rem 1rem ;
+    }
+
+    &__btn{
+        background-color: $foogle-primary;
+        color: $foogle-dark;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;   
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+    }
+
+    &__switch-form{
+        color: $foogle-primary;
+        cursor: pointer;
+    }
+}
