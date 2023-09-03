@@ -23,15 +23,15 @@
 
     &__logo-link{
         margin: 0rem auto;
-        
-
     }
     
     &__logo{
-        width: 150px;
+        width: 130px;
+        padding-bottom: 1rem;
         @include tablet{
           width: 140px;
           margin: 0;
+          padding-bottom: 0;
         }
         @include desktop{
             width: 200px;
@@ -69,7 +69,6 @@
             flex-grow:  1;
         }
         @include desktop {
-            padding: 1rem;
             width: 50%;
             font-size: 1rem;
         }
