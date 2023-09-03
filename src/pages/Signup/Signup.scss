@@ -72,4 +72,14 @@
         color: $foogle-primary;
         cursor: pointer;
     }
+
+    &__alert{
+        color: red;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    &__input-alert{
+        border: 1px solid red;
+    }
 }
