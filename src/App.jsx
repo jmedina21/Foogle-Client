@@ -4,7 +4,6 @@ import { Home } from './pages/Home/Home'
 import { Search } from './pages/Search/Search'
 import { Signup } from './pages/Signup/Signup'
 
-
 function App() {
 
     return (
