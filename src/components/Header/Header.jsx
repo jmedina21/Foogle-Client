@@ -17,6 +17,10 @@ export function Header({item , isLogged, logOut}){
         setSearch(e.target.value)
     }
 
+    function handleFocus() {
+        setSearch('');
+    }
+    
     function searchOnClick(){
         navigate(`/search/${search}`)
     }
@@ -26,12 +30,14 @@ export function Header({item , isLogged, logOut}){
             navigate(`/search/${search}`)
         }
     }
+
+
     return (
         <header className='header'>
             <div className='header__container'>
                 <Link className='header__logo-link' to={'/'}><img src={logo} alt="logo" className='header__logo' /></Link>
                 <div className='header__search-section'>
-                    <input type="text" className='header__search-bar' onChange={handleChange} onKeyDown={searchOnKeyDown} value={search} placeholder="Search all second hand markets from one place"/>
+                    <input type="text" className='header__search-bar' onChange={handleChange} onFocus={handleFocus} onKeyDown={searchOnKeyDown} value={search} placeholder="Search all second hand markets from one place"/>
                     <p className='header__search-btn' onClick={searchOnClick} >{`>`}</p>
                     <img className='header__search-icon' src={searchIcon} alt="search" />
                 </div>
