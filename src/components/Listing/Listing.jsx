@@ -24,7 +24,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
-                .then(res => console.log(res))
+                .then(res => console.log('Product saved'))
                 .catch(err => console.log(err))
         } else {
             setLiked(!liked)
@@ -36,7 +36,6 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
                 })
                 .then(res => {
                     const product = res.data.find(product => product.title === title)
-                    console.log(product)
                     axios
                         .delete(`http://localhost:2121/products/${product.id}`, {
                             headers: {
