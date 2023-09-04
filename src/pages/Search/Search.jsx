@@ -12,26 +12,6 @@ export function Search(){
     const {item} = useParams()
     const [isLogged, setIsLogged] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
-    const [user, setUser] = useState()
-
-
-    useEffect(() => {
-        if(localStorage.getItem('token')){
-            setIsLogged(true)
-            axios
-                .get('http://localhost:2121/user', {
-                    headers: {
-                        authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                })
-                .then(res => {
-                    setUser(res.data.id)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        }
-    }, [])
 
     function logOut(){
         localStorage.removeItem('token')
@@ -257,7 +237,7 @@ export function Search(){
     //             const facebookListings = res[0].data;
     //             const ebayListings = res[1].data;
     //             const craigslistListings = res[2].data;
-    
+
     //             const maxLength = Math.max(facebookListings.length, ebayListings.length, craigslistListings.length);
     
     //             let mergedListings = [];
