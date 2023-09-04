@@ -56,7 +56,7 @@ export function Signup(){
         axios
             .post('http://localhost:2121/login', loginData)
             .then(res => {
-                localStorage.setItem('token', res.data)
+                localStorage.setItem('token', res.data.token)
                 navigate('/')
             })
             .catch(err => {
@@ -85,7 +85,7 @@ export function Signup(){
                 password: signupData.password
             })
             .then(res => {
-                localStorage.setItem('token', res.data)
+                localStorage.setItem('token', res.data.token)
                 navigate('/')
             })
             .catch(err => {

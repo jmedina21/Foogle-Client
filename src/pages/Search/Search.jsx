@@ -9,6 +9,32 @@ import { useEffect, useState } from 'react'
 export function Search(){
 
     const {item} = useParams()
+    const [isLogged, setIsLogged] = useState(false)
+    const [user, setUser] = useState()
+
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            setIsLogged(true)
+            axios
+                .get('http://localhost:2121/user', {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                .then(res => {
+                    setUser(res.data.id)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+    }, [])
+
+    function logOut(){
+        localStorage.removeItem('token')
+        setIsLogged(false)
+    }
+
     const [listings, setListings] = useState(
         [
             {
@@ -275,8 +301,8 @@ export function Search(){
 
     return (
         <main>
-            <BurgerMenu />
-            <Header item={item} />
+            <BurgerMenu isLogged={isLogged} logOut={logOut}/>
+            <Header item={item} isLogged={isLogged} logOut={logOut} />
             <div className="listings">
             {listings.map((listing, index) => {
                 return (
@@ -287,6 +313,7 @@ export function Search(){
                         imageUrl={listing.imageUrl}
                         link={listing.link}
                         location={listing.location}
+                        isLogged={isLogged}
                     />
                 )
             })}

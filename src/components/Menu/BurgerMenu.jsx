@@ -6,17 +6,23 @@ import burger from '../../assets/icons/burger.svg'
 import login from '../../assets/icons/login.svg'
 import favorites from '../../assets/icons/favorites.svg'
 import github from '../../assets/icons/github.png'
+import logout from '../../assets/icons/logout.svg'
 
-
-
-export function BurgerMenu(){
+export function BurgerMenu({isLogged, logOut}){
 
     return (
         <Menu right width={ '170px' }  customBurgerIcon={ <img src={burger} /> }>
+            {!isLogged ?
             <Link to={'/signin'} className="menu__item">
                 <img className='menu__item-icon' src={login} alt="signing" />
                 <p className='menu__item-text'>SIGN IN</p>
             </Link>
+            :
+            <div className='menu__item' onClick={logOut} >
+                <img src={logout} alt="logout" className='home__item-icon' />
+                <p className='home__item-text' >Log out</p>
+            </div>
+            }
             <Link to={'/favorites'} className="menu__item">
                 <img className='menu__item-icon' src={favorites} alt="signing" />
                 <p className='menu__item-text'>FAVORITES</p>
