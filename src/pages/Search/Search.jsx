@@ -5,12 +5,15 @@ import { useParams } from 'react-router-dom'
 import { BurgerMenu } from '../../components/Menu/BurgerMenu'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Skeleton } from '../../components/Skeleton/Skeleton'
 
 export function Search(){
 
     const {item} = useParams()
     const [isLogged, setIsLogged] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [user, setUser] = useState()
+
 
     useEffect(() => {
         if(localStorage.getItem('token')){
@@ -240,29 +243,9 @@ export function Search(){
 
     // const [listings, setListings] = useState([])
 
-
     // useEffect(() => {
     //     setListings([])
-    //     let promises = []
-    //     promises.push(
-    //         axios(`http://localhost:2121/listings/facebook?search=${item}`),
-    //         axios(`http://localhost:2121/listings/ebay?search=${item}`),
-    //         axios(`http://localhost:2121/listings/craigslist?search=${item}`)
-    //     )
-    //     Promise.all(promises)
-    //         .then((res) => {
-    //             console.log(res)
-    //             res.forEach(arr => {
-    //                 setListings(prev => [...prev, ...arr.data])
-    //             })
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    // }, [item])
-
-    // useEffect(() => {
-    //     setListings([])
+    //      setIsLoading(true)
     //     let promises = []
     //     promises.push(
     //         axios(`http://localhost:2121/listings/facebook?search=${item}`),
@@ -292,6 +275,7 @@ export function Search(){
     //             }
     
     //             setListings(mergedListings);
+    //             setIsLoading(false);
     //         })
     //         .catch((err) => {
     //             console.log(err);
@@ -299,12 +283,19 @@ export function Search(){
     // }, [item]);
     
 
+    function renderSkeletons(n) {
+        return [...Array(n)].map((_item, i) => <Skeleton key={i} />);
+    }
+
     return (
         <main>
             <BurgerMenu isLogged={isLogged} logOut={logOut}/>
             <Header item={item} isLogged={isLogged} logOut={logOut} />
             <div className="listings">
-            {listings.map((listing, index) => {
+                {isLoading ?
+                    renderSkeletons(9)
+                :
+            listings.map((listing, index) => {
                 return (
                     <Listing 
                         key={index}
@@ -316,7 +307,8 @@ export function Search(){
                         isLogged={isLogged}
                     />
                 )
-            })}
+            })
+            }
             </div>
         </main>
     )

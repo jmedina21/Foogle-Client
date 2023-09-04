@@ -24,3 +24,10 @@
     -webkit-animation-timing-function: var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1));
     animation-timing-function: var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1));
 }
+
+@mixin loadingGradient{
+    background: linear-gradient(90deg, #0E0E0E, #1C1C1C, #0E0E0E);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+}
