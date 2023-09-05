@@ -16,7 +16,7 @@ export function Home(){
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(localStorage.getItem('token')){
+        if(localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined'){
             setIsLogged(true)
         }
     }, [])

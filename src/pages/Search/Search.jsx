@@ -12,12 +12,13 @@ import placeholder from '../../assets/images/noImage.svg'
 export function Search(){
 
     const {item} = useParams()
+    const [listings, setListings] = useState([])
     const [isLogged, setIsLogged] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [showArrowUp, setShowArrowUp] = useState(false);
 
     useEffect(() => {
-        if(localStorage.getItem('token')){
+        if(localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined'){
             setIsLogged(true)
         }
         const handleScroll = () => {
@@ -40,7 +41,6 @@ export function Search(){
         setIsLogged(false)
     }
 
-    const [listings, setListings] = useState([])
 
     useEffect(() => {
         setListings([])
@@ -93,6 +93,9 @@ export function Search(){
             <div className="listings">
                 {isLoading ?
                     renderSkeletons(9)
+                :
+                listings.length === 0 ?
+                <p className='favorites__message'>No products found with this description</p>
                 :
             listings.map((listing, index) => {
                 return (

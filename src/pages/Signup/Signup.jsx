@@ -1,5 +1,5 @@
 import './Signup.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import logo from '../../assets/logos/Foogle_logo.png'
 import back from '../../assets/icons/back.svg'
 import { Link, useNavigate } from 'react-router-dom'
@@ -23,9 +23,17 @@ export function Signup(){
 
     const [alert, setAlert] = useState(false)
     const [alertMessage, setAlertMessage] = useState('')
-
+    const [notification, setNotification] = useState(false)
+    const [notificationMessage, setNotificationMessage] = useState('')
     const [emailAlert, setEmailAlert] = useState(false)
     const [passwordAlert, setPasswordAlert] = useState(false)
+
+    useEffect(() => {
+        if(localStorage.getItem('token') === 'undefined'){
+            setNotification(true)
+            setNotificationMessage('Thank you for verifying your email, please login')
+        }
+    }, [])
     
     function handleNewAccount(){
         setNewAccount(!newAccount)
@@ -86,7 +94,11 @@ export function Signup(){
             })
             .then(res => {
                 localStorage.setItem('token', res.data.token)
-                navigate('/')
+                console.log(res.data)
+                console.log(res.data.token)
+                setAlert(false)
+                setNotification(true)
+                setNotificationMessage('Verification email has been sent, please check your email')
             })
             .catch(err => {
                 setAlert(true)
@@ -141,6 +153,9 @@ export function Signup(){
                 }
                 {alert &&
                 <p className='sign__alert'>{alertMessage}</p>
+                }
+                {notification &&
+                <p className='sign__notification'>{notificationMessage}</p>
                 }
         </main>
     )

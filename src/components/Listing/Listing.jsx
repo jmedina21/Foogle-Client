@@ -25,7 +25,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
-                .then(res => console.log('Product saved'))
+                // .then(_res => console.log('Product saved'))
                 .catch(err => console.log(err))
         } else {
             setLiked(!liked)
