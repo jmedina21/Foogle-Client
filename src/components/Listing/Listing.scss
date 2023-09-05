@@ -6,7 +6,7 @@
     border-radius: 10px;
     background-color: $foogle-secondary;
     color: $foogle-dark;
-    // flex-grow: 1;
+    margin-bottom: 0.35rem;
 
     &__link{
         text-decoration: none;
@@ -43,12 +43,13 @@
 
     &__title{
         font-size: 0.875rem;
-        padding: 0 0.7rem 0 0.5rem;
         display: -webkit-box;
+        padding: 0 0.7rem 0 1rem;
         overflow: hidden;
-        -webkit-line-clamp: 1; /* Number of lines to display */
+        -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
+        font-weight: 600;
     }
 
     &__details{

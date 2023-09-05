@@ -12,7 +12,6 @@
         text-decoration: none;
         color: $foogle-dark;
     }
-
     
     &__img-price-container{
         aspect-ratio: 1/1;
@@ -43,12 +42,13 @@
 
     &__title{
         font-size: 0.875rem;
-        padding: 0 0.7rem 0 0.5rem;
+        padding: 0 0.7rem 0 1rem;
         display: -webkit-box;
         overflow: hidden;
-        -webkit-line-clamp: 1; /* Number of lines to display */
+        -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
+        font-weight: 600;
     }
 
     &__details{
@@ -67,7 +67,7 @@
         font-size: 0.75rem;
         font-weight: 600;
         color: $foogle-gray;
-        margin: 0;
+        margin-left: 0.5rem;
         text-transform: capitalize ;
     }
 }

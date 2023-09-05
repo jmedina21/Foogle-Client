@@ -37,7 +37,12 @@ export function Header({item , isLogged, logOut}){
             <div className='header__container'>
                 <Link className='header__logo-link' to={'/'}><img src={logo} alt="logo" className='header__logo' /></Link>
                 <div className='header__search-section'>
-                    <input type="text" className='header__search-bar' onChange={handleChange} onFocus={handleFocus} onKeyDown={searchOnKeyDown} value={search} placeholder="Search all second hand markets from one place"/>
+                    <input type="text" className='header__search-bar' 
+                        onChange={handleChange} 
+                        onFocus={handleFocus} 
+                        onKeyDown={searchOnKeyDown} 
+                        value={search} 
+                        placeholder="Search all second hand markets from one place"/>
                     <p className='header__search-btn' onClick={searchOnClick} >{`>`}</p>
                     <img className='header__search-icon' src={searchIcon} alt="search" />
                 </div>
@@ -66,7 +71,7 @@ export function Header({item , isLogged, logOut}){
                 }   
                     <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="header__item">
                         <img className='header__item-icon' src={github} alt="signing" />
-                        <p className='header__item-text'>GITHUB</p>    
+                        <p className='home__item-text'>GITHUB</p>    
                     </a>
                 </nav>
             </div>
