@@ -4,13 +4,39 @@ import { useEffect, useState } from 'react'
 import { Header } from '../../components/Header/Header'
 import { BurgerMenu } from '../../components/Menu/BurgerMenu'
 import { FavoriteItem } from '../../components/FavoriteItem/FavoriteItem'
+import { useNavigate } from 'react-router-dom'
+import arrowUp from '../../assets/icons/arrow-up.svg'
 
 export function Favorites(){
 
+    const navigate = useNavigate()
     const item = ''
 
     const [isLogged, setIsLogged] = useState(false)
     const [products, setProducts] = useState([])
+    const [showArrowUp, setShowArrowUp] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 300) {
+                setShowArrowUp(true);
+            } else {
+                setShowArrowUp(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        if(!localStorage.getItem('token')){
+            navigate('/') 
+        }
+    }, [isLogged])
 
     useEffect(() => {
         if(localStorage.getItem('token')){
@@ -61,6 +87,9 @@ export function Favorites(){
                     )
                 })}
             </div>
+            {showArrowUp && (
+                <img src={arrowUp} alt="arrow up" className="arrow-up" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
+            )}
         </main>
     )
 }

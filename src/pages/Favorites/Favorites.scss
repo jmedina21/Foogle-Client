@@ -11,3 +11,22 @@
     padding: 1rem 0 0;
     margin: 1rem auto;
 }
+
+.arrow-up{
+    width: 35px;
+    height: 35px;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    background-color: $foogle-dark;
+    border-radius: 50%;
+    border: 2px solid $foogle-primary;
+    @include desktop{
+        width: 45px;
+        height: 45px;
+    }
+    &:hover{
+        transform: scale(1.1);
+    }
+}

@@ -55,10 +55,17 @@ export function Home(){
                     <p className='home__item-text' >Log out</p>
                 </div>
                 }
+                {isLogged ?
                 <Link to={'/favorites'} className="home__item">
                     <img className='home__item-icon' src={favorites} alt="signing" />
                     <p className='home__item-text'>FAVORITES</p>
                 </Link>
+                :
+                <div className='home__item home__item--disabled'>
+                    <img className='home__item-icon' src={favorites} alt="signing" />
+                    <p className='home__item-text'>FAVORITES</p>
+                </div>
+                }
                 <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="home__item">
                     <img className='home__item-icon' src={github} alt="signing" />
                     <p className='home__item-text'>GITHUB</p>    

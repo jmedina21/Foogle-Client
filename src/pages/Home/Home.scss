@@ -5,43 +5,48 @@
     padding: 0 1rem;
 
     &__nav{
-      display: none;
-      @include tablet{
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 1rem;
-        padding-top: 0.3rem;
-      }
-      @include desktop{
-        gap: 2rem;
-      }
+        display: none;
+        @include tablet{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1rem;
+            padding-top: 0.3rem;
+        }
+        @include desktop{
+            gap: 2rem;
+        }
     }
 
     &__item{
-      color: $foogle-light;
-      text-decoration: none;
-      display: flex !important;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      }
+        color: $foogle-light;
+        text-decoration: none;
+        display: flex !important;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+
+        &--disabled{
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
   
       &__item-text{
-        font-size: 0.75rem;
-        color: $foogle-light;
-        @include desktop{
-          font-size: 1rem;
-        }
+          font-size: 0.75rem;
+          color: $foogle-light;
+          @include desktop{
+              font-size: 1rem;
+          }
       }
   
       &__item-icon{
-        width: 20px;
-        height: 20px;
-        @include desktop{
-          width: 25px;
-          height: 25px;
-        }
+          width: 20px;
+          height: 20px;
+          @include desktop{
+              width: 25px;
+              height: 25px;
+          }
       }
 
     &__container{
@@ -49,7 +54,7 @@
         flex-direction: column;
         padding-top: 3rem;
         @include tablet{
-          padding-top: 6rem ;
+            padding-top: 6rem ;
         }
     }
   
@@ -57,8 +62,8 @@
         width: 150px;
         margin: 0rem auto 1rem;
         @include tablet{
-          width: 200px;
-          margin-bottom: 2rem;
+            width: 200px;
+            margin-bottom: 2rem;
         }
     }
 
@@ -78,11 +83,11 @@
         border-radius: 10px;
         width: 100%;
         @include tablet {
-          width: 60%;
-          padding: 0.7rem 2rem 0.7rem 1rem;
+            width: 60%;
+            padding: 0.7rem 2rem 0.7rem 1rem;
         }
         @include desktop {
-          width: 50%;
+            width: 50%;
         }
     }
 

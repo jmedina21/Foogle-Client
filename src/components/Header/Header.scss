@@ -24,6 +24,20 @@
     &__logo-link{
         margin: 0rem auto;
     }
+
+    &__item{
+        color: $foogle-light;
+        text-decoration: none;
+        display: flex !important;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+
+        &--disabled{
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
     
     &__logo{
         width: 130px;

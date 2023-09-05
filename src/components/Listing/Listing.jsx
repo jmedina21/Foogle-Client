@@ -9,6 +9,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
     function saveProduct(){
         if(!isLogged){
             alert('You need to be logged in to save products')
+            return
         }
         if(!liked){
             setLiked(!liked)
@@ -42,7 +43,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
                                 Authorization: `Bearer ${localStorage.getItem('token')}`
                             }
                         })
-                        .then(res => console.log(res))
+                        // .then(res => console.log(res))
                         .catch(err => console.log(err))
                 })
                 .catch(err => console.log(err))

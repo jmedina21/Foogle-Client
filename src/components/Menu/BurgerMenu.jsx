@@ -20,13 +20,20 @@ export function BurgerMenu({isLogged, logOut}){
             :
             <div className='menu__item' onClick={logOut} >
                 <img src={logout} alt="logout" className='home__item-icon' />
-                <p className='home__item-text' >Log out</p>
+                <p className='menu__item-text' >Log out</p>
             </div>
             }
-            <Link to={'/favorites'} className="menu__item">
-                <img className='menu__item-icon' src={favorites} alt="signing" />
-                <p className='menu__item-text'>FAVORITES</p>
-            </Link>
+            {isLogged ?
+                <Link to={'/favorites'} className="home__item">
+                    <img className='menu__item-icon' src={favorites} alt="signing" />
+                    <p className='menu__item-text'>FAVORITES</p>
+                </Link>
+                :
+                <div className='home__item home__item--disabled'>
+                    <img className='menu__item-icon' src={favorites} alt="signing" />
+                    <p className='menu__item-text'>FAVORITES</p>
+                </div>
+                }
             <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="menu__item">
                 <img className='menu__item-icon' src={github} alt="signing" />
                 <p className='menu__item-text'>GITHUB</p>    

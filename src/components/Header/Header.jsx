@@ -43,20 +43,27 @@ export function Header({item , isLogged, logOut}){
                 </div>
                 <nav className='header__nav'>
                 {!isLogged ?
-                    <Link to={'/signin'} className="menu__item">
+                    <Link to={'/signin'} className="header__item">
                         <img className='home__item-icon' src={login} alt="signing" />
                         <p className='home__item-text'>SIGN IN</p>
                     </Link>
                     :
-                    <div className='menu__item' onClick={logOut} >
+                    <div className='header__item' onClick={logOut} >
                         <img src={logout} alt="logout" className='home__item-icon' />
                         <p className='home__item-text' >Log out</p>
                     </div>
                     }
-                    <Link to={'/favorites'} className="header__item">
-                        <img className='header__item-icon' src={favorites} alt="signing" />
-                        <p className='header__item-text'>FAVORITES</p>
-                    </Link>
+                    {isLogged ?
+                <Link to={'/favorites'} className="home__item">
+                    <img className='home__item-icon' src={favorites} alt="signing" />
+                    <p className='home__item-text'>FAVORITES</p>
+                </Link>
+                :
+                <div className='home__item home__item--disabled'>
+                    <img className='home__item-icon' src={favorites} alt="signing" />
+                    <p className='home__item-text'>FAVORITES</p>
+                </div>
+                }   
                     <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="header__item">
                         <img className='header__item-icon' src={github} alt="signing" />
                         <p className='header__item-text'>GITHUB</p>    
