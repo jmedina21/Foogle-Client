@@ -29,4 +29,8 @@
     &:hover{
         transform: scale(1.1);
     }
+
+    &__empty-container{
+        display: flex;
+    }
 }

@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react'
 import { Skeleton } from '../../components/Skeleton/Skeleton'
 import arrowUp from '../../assets/icons/arrow-up.svg'
 import placeholder from '../../assets/images/noImage.svg'
+import emptyBox from '../../assets/animations/emptyBox.json'
+import Lottie from 'lottie-react'
 
 export function Search(){
 
@@ -95,7 +97,10 @@ export function Search(){
                     renderSkeletons(9)
                 :
                 listings.length === 0 ?
-                <p className='favorites__message'>No products found with this description</p>
+                <div className='listings__empty-container' >
+                    <Lottie animationData={emptyBox} className='empty-box' />
+                    <p className='favorites__message'>No products found with this description</p>
+                </div>
                 :
             listings.map((listing, index) => {
                 return (

@@ -6,6 +6,8 @@ import { BurgerMenu } from '../../components/Menu/BurgerMenu'
 import { FavoriteItem } from '../../components/FavoriteItem/FavoriteItem'
 import { useNavigate } from 'react-router-dom'
 import arrowUp from '../../assets/icons/arrow-up.svg'
+import emptyBox from '../../assets/animations/emptyBox.json'
+import Lottie from 'lottie-react'
 
 export function Favorites(){
 
@@ -68,9 +70,12 @@ export function Favorites(){
         <main className='favorites'>
             <BurgerMenu isLogged={isLogged} logOut={logOut}/>
             <Header item={item} isLogged={isLogged} logOut={logOut}/>
-            <div className='favorites__contianer'>
+            <div className='favorites__container'>
                 {!products.length ?
-                <p className='favorites__message'>No products found</p>
+                <div className='favorites__empty-container'>
+                    <Lottie animationData={emptyBox} className='empty-box' />
+                    <p className='favorites__message'>No products found</p>
+                </div>
                 :
                 products.map(product => {
                     return (
