@@ -56,7 +56,7 @@ export function Favorites(){
                     }
                     setProducts(res.data)})
                 .catch(err => {
-                    console.log(err.response.data)
+                    console.log(err)
                 })
         }
     }, [])
