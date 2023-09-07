@@ -8,7 +8,7 @@ import logout from '../../assets/icons/logout.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-export function Header({item , isLogged, logOut}){
+export function Header({item , isLogged, logOut, setFilter}){
 
     const [search, setSearch] = useState(item)
     const navigate = useNavigate()
@@ -31,6 +31,9 @@ export function Header({item , isLogged, logOut}){
         }
     }
 
+    function handleSort(e){
+        setFilter(e.target.value)
+    }
 
     return (
         <header className='header'>
@@ -45,6 +48,14 @@ export function Header({item , isLogged, logOut}){
                         placeholder="Search all second hand markets from one place"/>
                     <p className='header__search-btn' onClick={searchOnClick} >{`>`}</p>
                     <img className='header__search-icon' src={searchIcon} alt="search" />
+                    <div className='header__filter'>
+                        <p className='header__filter-label' >Order by:</p>
+                        <select className='header__sort' onChange={handleSort}>
+                            <option value="relevance">Relevance</option>
+                            <option value="priceAsc">$ - $$$</option>
+                            <option value="priceDesc">$$$ - $</option>
+                        </select>
+                    </div>
                 </div>
                 <nav className='header__nav'>
                 {!isLogged ?
@@ -75,6 +86,7 @@ export function Header({item , isLogged, logOut}){
                     </a> */}
                 </nav>
             </div>
+            
         </header>
     )
 }

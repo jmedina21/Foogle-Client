@@ -17,6 +17,7 @@ export function Favorites(){
     const [isLogged, setIsLogged] = useState(false)
     const [products, setProducts] = useState([])
     const [showArrowUp, setShowArrowUp] = useState(false);
+    const [filter, setFilter] = useState('relevance')
 
     useEffect(() => {
         const handleScroll = () => {
@@ -66,10 +67,36 @@ export function Favorites(){
         setIsLogged(false)
     }
 
+    function getPriceValue(priceString, direction = 'asc') {
+        if (priceString === 'Free' || priceString === null) return 0;
+    
+        const prices = priceString.replace(/[$,\\-]/g, '').split(' to ');
+        const [minPrice, maxPrice] = prices;
+    
+        if (direction === 'asc') {
+            return parseFloat(minPrice || 0);
+        } else {
+            return parseFloat(maxPrice || minPrice || 0);
+        }
+    }
+    
+    function sortProducts(products, filter) {
+        if (filter === 'relevance') {
+            return products;
+        } else if (filter === 'priceAsc') {
+            return [...products].sort((a, b) => getPriceValue(a.price) - getPriceValue(b.price));
+        } else if (filter === 'priceDesc') {
+            return [...products].sort((a, b) => getPriceValue(b.price, 'desc') - getPriceValue(a.price, 'desc'));
+        }
+        return products;
+    }
+    
+    const sortedProducts = sortProducts(products, filter);
+
     return (
         <main className='favorites'>
             <BurgerMenu isLogged={isLogged} logOut={logOut}/>
-            <Header item={item} isLogged={isLogged} logOut={logOut}/>
+            <Header item={item} isLogged={isLogged} logOut={logOut} setFilter={setFilter}/>
             <div className='favorites__container'>
                 {!products.length ?
                 <div className='favorites__empty-container'>
@@ -77,7 +104,8 @@ export function Favorites(){
                     <p className='favorites__message'>No products found</p>
                 </div>
                 :
-                products.map(product => {
+                // products.map(product => {
+                sortedProducts.map((product, index) => {
                     return (
                         <FavoriteItem 
                             key={product.id}

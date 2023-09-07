@@ -154,6 +154,34 @@
             width: 25px;
             height: 25px;
         }
-      }
+    }
 
+    &__filter{
+        display: flex;
+        position: absolute;
+        align-items: center;
+        gap: 0.4rem;
+        top: 2rem;
+        right: 0;
+        @include tablet{
+            top: 3rem;
+        }
+        @include desktop{
+            top: 3.5rem;
+            right: 2.1rem;
+        }
+    }
+
+    &__filter-label{
+        margin: 0;
+        font-size: 0.7rem;
+    }
+
+    &__sort{
+        background-color: $foogle-dark;
+        color: $foogle-light;
+        padding: 2px 5px;
+        border-radius: 5px;
+        border: 1px solid $foogle-light;
+    }
 }
