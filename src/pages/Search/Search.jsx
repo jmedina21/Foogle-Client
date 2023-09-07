@@ -8,15 +8,14 @@ import { useEffect, useState } from 'react'
 import { Skeleton } from '../../components/Skeleton/Skeleton'
 import arrowUp from '../../assets/icons/arrow-up.svg'
 import placeholder from '../../assets/images/noImage.svg'
-import emptyBox from '../../assets/animations/emptyBox.json'
-import Lottie from 'lottie-react'
+import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
 
 export function Search(){
 
     const {item} = useParams()
     const [listings, setListings] = useState([])
     const [isLogged, setIsLogged] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [showArrowUp, setShowArrowUp] = useState(false);
 
     useEffect(() => {
@@ -94,13 +93,13 @@ export function Search(){
             <Header item={item} isLogged={isLogged} logOut={logOut} />
             <div className="listings">
                 {isLoading ?
-                    renderSkeletons(9)
-                :
-                listings.length === 0 ?
-                <div className='listings__empty-container' >
-                    <Lottie animationData={emptyBox} className='empty-box' />
-                    <p className='favorites__message'>No products found with this description</p>
-                </div>
+                    renderSkeletons(18)
+                    :
+                    !listings.length ?
+                    <div className='listings__empty-container' >
+                        <EmptyBox />
+                        <p className='listings__message'>No products found with this description</p>
+                    </div>
                 :
             listings.map((listing, index) => {
                 return (
