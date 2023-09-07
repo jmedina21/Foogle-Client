@@ -134,7 +134,7 @@ export function Search(){
                         key={index}
                         title={listing.title}
                         price={listing.price === null ? 'Free' : listing.price}
-                        imageUrl={listing.imageUrl  === null ? placeholder : listing.imageUrl}
+                        imageUrl={!listing.imageUrl ? placeholder : listing.imageUrl}
                         link={listing.link}
                         location={listing.location}
                         isLogged={isLogged}

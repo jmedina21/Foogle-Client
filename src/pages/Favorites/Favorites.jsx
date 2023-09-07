@@ -105,7 +105,7 @@ export function Favorites(){
                 </div>
                 :
                 // products.map(product => {
-                sortedProducts.map((product, index) => {
+                sortedProducts.map((product) => {
                     return (
                         <FavoriteItem 
                             key={product.id}
