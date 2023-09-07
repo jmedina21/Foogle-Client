@@ -52,7 +52,7 @@ export function Home(){
                 :
                 <div className='home__item' onClick={logOut} >
                     <img src={logout} alt="logout" className='home__item-icon' />
-                    <p className='home__item-text' >Log out</p>
+                    <p className='home__item-text' >LOG OUT</p>
                 </div>
                 }
                 {isLogged ?
@@ -66,10 +66,10 @@ export function Home(){
                     <p className='home__item-text'>FAVORITES</p>
                 </div>
                 }
-                <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="home__item">
+                {/* <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="home__item">
                     <img className='home__item-icon' src={github} alt="signing" />
                     <p className='home__item-text'>GITHUB</p>    
-                </a>
+                </a> */}
             </nav>
             <div className='home__container'>
                 <img src={logo} alt="logo" className='home__logo' />

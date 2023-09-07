@@ -36,7 +36,7 @@ export function Signup(){
 
         google.accounts.id.renderButton(
             document.getElementById('signInDiv'),
-            {theme: 'outline', size: 'large', text: 'continue_with', shape: 'rectangular'}
+            {theme: 'outline', size: 'large', text: 'continue_with', shape: 'circle'}
         )
 
         if(localStorage.getItem('token') === 'undefined'){

@@ -55,7 +55,7 @@ export function Header({item , isLogged, logOut}){
                     :
                     <div className='header__item' onClick={logOut} >
                         <img src={logout} alt="logout" className='home__item-icon' />
-                        <p className='home__item-text' >Log out</p>
+                        <p className='home__item-text' >LOG OUT</p>
                     </div>
                     }
                     {isLogged ?
@@ -69,10 +69,10 @@ export function Header({item , isLogged, logOut}){
                     <p className='home__item-text'>FAVORITES</p>
                 </div>
                 }   
-                    <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="header__item">
+                    {/* <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="header__item">
                         <img className='header__item-icon' src={github} alt="signing" />
                         <p className='home__item-text'>GITHUB</p>    
-                    </a>
+                    </a> */}
                 </nav>
             </div>
         </header>
