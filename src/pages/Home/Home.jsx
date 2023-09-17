@@ -1,6 +1,6 @@
 import './Home.scss'
 import searchIcon from '../../assets/icons/MagnifyingGlass.svg'
-import logo from '../../assets/logos/foogle_logo.png'
+import logo from '../../assets/logos/Foogle_logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { BurgerMenu } from '../../components/Menu/BurgerMenu'
