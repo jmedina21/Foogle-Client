@@ -104,7 +104,6 @@ export function Favorites(){
                     <p className='favorites__message'>No products found</p>
                 </div>
                 :
-                // products.map(product => {
                 sortedProducts.map((product) => {
                     return (
                         <FavoriteItem 

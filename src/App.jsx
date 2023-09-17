@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home } from './pages/Home/Home'
 import { Search } from './pages/Search/Search'
 import { Signup } from './pages/Signup/Signup'
-import { Favorites } from './pages/Favorites/favorites'
+import { Favorites } from './pages/Favorites/Favorites'
 
 function App() {
 
