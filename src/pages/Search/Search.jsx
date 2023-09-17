@@ -43,15 +43,19 @@ export function Search(){
         setIsLogged(false)
     }
 
+    const url = 'https://foogle-server-production.up.railway.app/'
 
     useEffect(() => {
         setListings([])
          setIsLoading(true)
         let promises = []
         promises.push(
-            axios(`http://localhost:2121/listings/facebook?search=${item}`),
-            axios(`http://localhost:2121/listings/ebay?search=${item}`),
-            axios(`http://localhost:2121/listings/craigslist?search=${item}`)
+            // axios(`http://localhost:2121/listings/facebook?search=${item}`),
+            // axios(`http://localhost:2121/listings/ebay?search=${item}`),
+            // axios(`http://localhost:2121/listings/craigslist?search=${item}`)
+            axios(`${url}listings/facebook?search=${item}`),
+            axios(`${url}listings/ebay?search=${item}`),
+            axios(`${url}listings/craigslist?search=${item}`)
         )
         Promise.all(promises)
             .then((res) => {

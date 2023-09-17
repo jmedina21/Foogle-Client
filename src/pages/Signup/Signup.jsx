@@ -28,33 +28,35 @@ export function Signup(){
     const [emailAlert, setEmailAlert] = useState(false)
     const [passwordAlert, setPasswordAlert] = useState(false)
 
-    useEffect(() => {
-        google.accounts.id.initialize({
-            client_id: '86418490564-bfs8k5fhkt99ee2bcj9q2cq7h7tv3adf.apps.googleusercontent.com',
-            callback: handleCredentialResponse
-        })
+    //working in dev
 
-        google.accounts.id.renderButton(
-            document.getElementById('signInDiv'),
-            {theme: 'outline', size: 'large', text: 'continue_with', shape: 'circle'}
-        )
+    // useEffect(() => {
+    //     google.accounts.id.initialize({
+    //         client_id: '86418490564-bfs8k5fhkt99ee2bcj9q2cq7h7tv3adf.apps.googleusercontent.com',
+    //         callback: handleCredentialResponse
+    //     })
 
-        if(localStorage.getItem('token') === 'undefined'){
-            setNotification(true)
-            setNotificationMessage('Thank you for verifying your email, please login')
-        }
-    }, [])
+    //     google.accounts.id.renderButton(
+    //         document.getElementById('signInDiv'),
+    //         {theme: 'outline', size: 'large', text: 'continue_with', shape: 'circle'}
+    //     )
 
-    function handleCredentialResponse(response){
-        axios
-            .post('http://localhost:2121/login/token', {
-                token: response.credential
-                })
-            .then(res => {
-                localStorage.setItem('token', res.data.token)
-                navigate('/')
-            })
-    }
+    //     if(localStorage.getItem('token') === 'undefined'){
+    //         setNotification(true)
+    //         setNotificationMessage('Thank you for verifying your email, please login')
+    //     }
+    // }, [])
+
+    // function handleCredentialResponse(response){
+    //     axios
+    //         .post('http://localhost:2121/login/token', {
+    //             token: response.credential
+    //             })
+    //         .then(res => {
+    //             localStorage.setItem('token', res.data.token)
+    //             navigate('/')
+    //         })
+    // }
 
     
     function handleNewAccount(){
@@ -81,10 +83,12 @@ export function Signup(){
         })
     }
 
+    const url = 'https://foogle-server-production.up.railway.app/'
+
     function handleLogin(e){
         e.preventDefault()
         axios
-            .post('http://localhost:2121/login', loginData)
+            .post(`${url}login`, loginData)
             .then(res => {
                 localStorage.setItem('token', res.data.token)
                 navigate('/')
@@ -110,7 +114,7 @@ export function Signup(){
             return
         }else setPasswordAlert(false)
         axios
-            .post('http://localhost:2121/signup', {
+            .post(`${url}signup`, {
                 email: signupData.email,
                 password: signupData.password
             })
@@ -173,7 +177,7 @@ export function Signup(){
                 :
                 <p>Already have an account?<span className='sign__switch-form' onClick={handleNewAccount}> Login</span></p>
                 }
-                <div id='signInDiv'></div>
+                {/* <div id='signInDiv'></div> */}
                 {alert &&
                 <p className='sign__alert'>{alertMessage}</p>
                 }
