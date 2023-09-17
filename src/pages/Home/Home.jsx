@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import { BurgerMenu } from '../../components/Menu/BurgerMenu'
 import login from '../../assets/icons/login.svg'
 import favorites from '../../assets/icons/favorites.svg'
-import github from '../../assets/icons/github.png'
 import logout from '../../assets/icons/logout.svg'
 
 export function Home(){
@@ -66,10 +65,6 @@ export function Home(){
                     <p className='home__item-text'>FAVORITES</p>
                 </div>
                 }
-                {/* <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="home__item">
-                    <img className='home__item-icon' src={github} alt="signing" />
-                    <p className='home__item-text'>GITHUB</p>    
-                </a> */}
             </nav>
             <div className='home__container'>
                 <img src={logo} alt="logo" className='home__logo' />
