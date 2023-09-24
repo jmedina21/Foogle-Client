@@ -43,7 +43,7 @@ export function Search(){
         setIsLogged(false)
     }
 
-    const url = 'https://foogle-server-production.up.railway.app/'
+    const url = 'https://api.foogle.foo/'
 
     useEffect(() => {
         setListings([])
