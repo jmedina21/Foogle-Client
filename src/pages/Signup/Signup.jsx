@@ -28,35 +28,35 @@ export function Signup(){
     const [emailAlert, setEmailAlert] = useState(false)
     const [passwordAlert, setPasswordAlert] = useState(false)
 
-    //working in dev
+    // working in dev
 
-    // useEffect(() => {
-    //     google.accounts.id.initialize({
-    //         client_id: '86418490564-bfs8k5fhkt99ee2bcj9q2cq7h7tv3adf.apps.googleusercontent.com',
-    //         callback: handleCredentialResponse
-    //     })
+    useEffect(() => {
+        google.accounts.id.initialize({
+            client_id: '86418490564-bfs8k5fhkt99ee2bcj9q2cq7h7tv3adf.apps.googleusercontent.com',
+            callback: handleCredentialResponse
+        })
 
-    //     google.accounts.id.renderButton(
-    //         document.getElementById('signInDiv'),
-    //         {theme: 'outline', size: 'large', text: 'continue_with', shape: 'circle'}
-    //     )
+        google.accounts.id.renderButton(
+            document.getElementById('signInDiv'),
+            {theme: 'outline', size: 'large', text: 'continue_with', shape: 'circle'}
+        )
 
-    //     if(localStorage.getItem('token') === 'undefined'){
-    //         setNotification(true)
-    //         setNotificationMessage('Thank you for verifying your email, please login')
-    //     }
-    // }, [])
+        if(localStorage.getItem('token') === 'undefined'){
+            setNotification(true)
+            setNotificationMessage('Thank you for verifying your email, please login')
+        }
+    }, [])
 
-    // function handleCredentialResponse(response){
-    //     axios
-    //         .post('http://localhost:2121/login/token', {
-    //             token: response.credential
-    //             })
-    //         .then(res => {
-    //             localStorage.setItem('token', res.data.token)
-    //             navigate('/')
-    //         })
-    // }
+    function handleCredentialResponse(response){
+        axios
+            .post('http://localhost:2121/login/token', {
+                token: response.credential
+                })
+            .then(res => {
+                localStorage.setItem('token', res.data.token)
+                navigate('/')
+            })
+    }
 
     
     function handleNewAccount(){
@@ -83,7 +83,8 @@ export function Signup(){
         })
     }
 
-    const url = 'https://foogle-server-production.up.railway.app/'
+    const url = 'https://api.foogle.foo/'
+    // const url = 'http://localhost:2121/'
 
     function handleLogin(e){
         e.preventDefault()
@@ -177,7 +178,7 @@ export function Signup(){
                 :
                 <p>Already have an account?<span className='sign__switch-form' onClick={handleNewAccount}> Login</span></p>
                 }
-                {/* <div id='signInDiv'></div> */}
+                <div id='signInDiv'></div>
                 {alert &&
                 <p className='sign__alert'>{alertMessage}</p>
                 }

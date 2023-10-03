@@ -50,9 +50,9 @@ export function Search(){
          setIsLoading(true)
         let promises = []
         promises.push(
-            // axios(`http://localhost:2121/listings/facebook?search=${item}`),
-            // axios(`http://localhost:2121/listings/ebay?search=${item}`),
-            // axios(`http://localhost:2121/listings/craigslist?search=${item}`)
+        //     axios(`http://localhost:2121/listings/facebook?search=${item}`),
+        //     axios(`http://localhost:2121/listings/ebay?search=${item}`),
+        //     axios(`http://localhost:2121/listings/craigslist?search=${item}`)
             axios(`${url}listings/facebook?search=${item}`),
             axios(`${url}listings/ebay?search=${item}`),
             axios(`${url}listings/craigslist?search=${item}`)
