@@ -44,7 +44,7 @@ export function Home(){
             <BurgerMenu isLogged={isLogged} logOut={logOut} />
             <nav className='home__nav'>
                 {!isLogged ?
-                <Link to={'/signin'} className="home__item">
+                <Link to={'/login'} className="home__item">
                     <img className='home__item-icon' src={login} alt="signing" />
                     <p className='home__item-text'>SIGN IN</p>
                 </Link>

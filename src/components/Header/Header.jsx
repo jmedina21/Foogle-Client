@@ -58,7 +58,7 @@ export function Header({item , isLogged, logOut, setFilter}){
                 </div>
                 <nav className='header__nav'>
                 {!isLogged ?
-                    <Link to={'/signin'} className="header__item">
+                    <Link to={'/login'} className="header__item">
                         <img className='home__item-icon' src={login} alt="signing" />
                         <p className='home__item-text'>SIGN IN</p>
                     </Link>

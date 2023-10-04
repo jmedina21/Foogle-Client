@@ -11,7 +11,7 @@ export function BurgerMenu({isLogged, logOut}){
     return (
         <Menu right width={ '170px' }  customBurgerIcon={ <img src={burger} /> }>
             {!isLogged ?
-            <Link to={'/signin'} className="menu__item">
+            <Link to={'/login'} className="menu__item">
                 <img className='menu__item-icon' src={login} alt="signing" />
                 <p className='menu__item-text'>SIGN IN</p>
             </Link>
