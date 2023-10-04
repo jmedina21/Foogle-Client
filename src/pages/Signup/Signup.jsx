@@ -41,7 +41,7 @@ export function Signup(){
             {theme: 'outline', size: 'large', text: 'continue_with', shape: 'circle'}
         )
 
-        if(localStorage.getItem('token') === 'undefined'){
+        if(localStorage.getItem('token') === 'notVerified'){
             setNotification(true)
             setNotificationMessage('Thank you for verifying your email, please login')
         }
@@ -126,6 +126,7 @@ export function Signup(){
                 setAlert(false)
                 setNotification(true)
                 setNotificationMessage('Verification email has been sent, please check your email')
+                localStorage.setItem('token', 'notVerified')
             })
             .catch(err => {
                 setAlert(true)
