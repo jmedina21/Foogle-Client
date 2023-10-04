@@ -11,6 +11,8 @@ import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
 
 export function Favorites(){
 
+    const url = 'https://api.foogle.foo'
+
     const navigate = useNavigate()
     const item = ''
 
@@ -45,7 +47,7 @@ export function Favorites(){
         if(localStorage.getItem('token')){
             setIsLogged(true)
             axios
-                .get('http://localhost:2121/products', {
+                .get(`${url}/products`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
