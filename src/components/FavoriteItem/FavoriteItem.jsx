@@ -6,16 +6,18 @@ import placeholder from '../../assets/images/noImage.svg'
 
 export function FavoriteItem({title, price, imageUrl,link, location, id, setProducts}){
 
+    const url = 'https://api.foogle.foo'
+
     function removeProduct(){
         axios
-            .delete(`http://localhost:2121/products/${id}`, {
+            .delete(`${url}/products/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
             .then(_res => {
                 axios
-                    .get('http://localhost:2121/products', {
+                    .get(`${url}/products`, {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem('token')}`
                         }

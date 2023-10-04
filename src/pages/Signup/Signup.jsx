@@ -49,7 +49,7 @@ export function Signup(){
 
     function handleCredentialResponse(response){
         axios
-            .post('http://localhost:2121/login/token', {
+            .post(`${url}/login/token`, {
                 token: response.credential
                 })
             .then(res => {
@@ -83,13 +83,13 @@ export function Signup(){
         })
     }
 
-    const url = 'https://api.foogle.foo/'
+    const url = 'https://api.foogle.foo'
     // const url = 'http://localhost:2121/'
 
     function handleLogin(e){
         e.preventDefault()
         axios
-            .post(`${url}login`, loginData)
+            .post(`${url}/login`, loginData)
             .then(res => {
                 localStorage.setItem('token', res.data.token)
                 navigate('/')
@@ -115,7 +115,7 @@ export function Signup(){
             return
         }else setPasswordAlert(false)
         axios
-            .post(`${url}signup`, {
+            .post(`${url}/signup`, {
                 email: signupData.email,
                 password: signupData.password
             })

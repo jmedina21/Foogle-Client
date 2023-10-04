@@ -6,6 +6,9 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
 
     const [liked, setLiked] = useState(false)
 
+    const url = 'https://api.foogle.foo'
+
+
     function saveProduct(){
         if(!isLogged){
             alert('You need to be logged in to save products')
@@ -14,7 +17,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
         if(!liked){
             setLiked(!liked)
             axios
-                .post('http://localhost:2121/products', {
+                .post(`${url}/products`, {
                     title: title,
                     price: price,
                     image: imageUrl,
@@ -30,7 +33,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
         } else {
             setLiked(!liked)
             axios
-                .get('http://localhost:2121/products', {
+                .get(`${url}/products`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -38,7 +41,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
                 .then(res => {
                     const product = res.data.find(product => product.title === title)
                     axios
-                        .delete(`http://localhost:2121/products/${product.id}`, {
+                        .delete(`${url}/products/${product.id}`, {
                             headers: {
                                 Authorization: `Bearer ${localStorage.getItem('token')}`
                             }

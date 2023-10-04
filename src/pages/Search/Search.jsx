@@ -43,7 +43,7 @@ export function Search(){
         setIsLogged(false)
     }
 
-    const url = 'https://api.foogle.foo/'
+    const url = 'https://api.foogle.foo'
 
     useEffect(() => {
         setListings([])
@@ -53,9 +53,9 @@ export function Search(){
         //     axios(`http://localhost:2121/listings/facebook?search=${item}`),
         //     axios(`http://localhost:2121/listings/ebay?search=${item}`),
         //     axios(`http://localhost:2121/listings/craigslist?search=${item}`)
-            axios(`${url}listings/facebook?search=${item}`),
-            axios(`${url}listings/ebay?search=${item}`),
-            axios(`${url}listings/craigslist?search=${item}`)
+            axios(`${url}/listings/facebook?search=${item}`),
+            axios(`${url}/listings/ebay?search=${item}`),
+            axios(`${url}/listings/craigslist?search=${item}`)
         )
         Promise.all(promises)
             .then((res) => {
