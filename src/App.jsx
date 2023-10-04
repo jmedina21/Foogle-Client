@@ -14,8 +14,8 @@ function App() {
                 <Route path="search/" element={<Search />} />
                 <Route path="search/:item" element={<Search />} />
                 <Route path="favorites/" element={<Favorites />} />
-                <Route path="signin/" element={<Signup />} />
-                <Route path="*" element={<h1>Page not found</h1>} />
+                <Route path="login/" element={<Signup />} />
+                <Route path="/*" element={<h1>Page not found</h1>} />
             </Routes>
         </BrowserRouter>
     )
