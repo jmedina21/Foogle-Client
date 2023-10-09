@@ -28,8 +28,6 @@ export function Signup(){
     const [emailAlert, setEmailAlert] = useState(false)
     const [passwordAlert, setPasswordAlert] = useState(false)
 
-    // working in dev
-
     useEffect(() => {
         google.accounts.id.initialize({
             client_id: '86418490564-bfs8k5fhkt99ee2bcj9q2cq7h7tv3adf.apps.googleusercontent.com',
@@ -58,7 +56,6 @@ export function Signup(){
             })
     }
 
-    
     function handleNewAccount(){
         setNewAccount(!newAccount)
         setAlert(false)
