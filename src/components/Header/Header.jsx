@@ -5,19 +5,20 @@ import logo from '../../assets/logos/Foogle_logo.png'
 import favorites from '../../assets/icons/favorites.svg'
 import logout from '../../assets/icons/logout.svg'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export function Header({item , isLogged, logOut, setFilter}){
 
     const [search, setSearch] = useState(item)
     const navigate = useNavigate()
+    const inputRef = useRef(null)
 
     function handleChange(e){
         setSearch(e.target.value)
     }
 
-    function handleFocus() {
-        setSearch('');
+    function handleFocus(e) {
+        e.target.select();
     }
     
     function searchOnClick(){
@@ -79,10 +80,6 @@ export function Header({item , isLogged, logOut, setFilter}){
                     <p className='home__item-text'>FAVORITES</p>
                 </div>
                 }   
-                    {/* <a href='https://github.com/jmedina21/Foogle-Server.git' target='_blank' className="header__item">
-                        <img className='header__item-icon' src={github} alt="signing" />
-                        <p className='home__item-text'>GITHUB</p>    
-                    </a> */}
                 </nav>
             </div>
             
