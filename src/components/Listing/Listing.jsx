@@ -28,8 +28,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
-                // .then(_res => console.log('Product saved'))
-                .catch(err => console.log(err))
+                .catch(err => console.error(err))
         } else {
             setLiked(!liked)
             axios
@@ -46,10 +45,9 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
                                 Authorization: `Bearer ${localStorage.getItem('token')}`
                             }
                         })
-                        // .then(res => console.log(res))
-                        .catch(err => console.log(err))
+                        .catch(err => console.error(err))
                 })
-                .catch(err => console.log(err))
+                .catch(err => console.error(err))
         }
     }
 

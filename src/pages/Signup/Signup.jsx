@@ -118,8 +118,6 @@ export function Signup(){
             })
             .then(res => {
                 localStorage.setItem('token', res.data.token)
-                console.log(res.data)
-                console.log(res.data.token)
                 setAlert(false)
                 setNotification(true)
                 setNotificationMessage('Verification email has been sent, please check your email')

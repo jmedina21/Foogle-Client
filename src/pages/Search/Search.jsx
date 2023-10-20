@@ -83,7 +83,7 @@ export function Search(){
                 setIsLoading(false);
             })
             .catch((err) => {
-                console.log(err);
+                console.error(err);
             });
     }, [item]);
     
