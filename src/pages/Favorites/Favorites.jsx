@@ -18,6 +18,7 @@ export function Favorites(){
 
     const [isLogged, setIsLogged] = useState(false)
     const [products, setProducts] = useState([])
+    console.log(products)
     const [showArrowUp, setShowArrowUp] = useState(false);
     const [filter, setFilter] = useState('relevance')
 
@@ -109,13 +110,13 @@ export function Favorites(){
                 sortedProducts.map((product) => {
                     return (
                         <FavoriteItem 
-                            key={product.id}
+                            key={product._id}
                             title={product.title}
                             price={product.price}
                             imageUrl={product.image}
                             link={product.link}
                             location={product.location}
-                            id={product.id}
+                            id={product._id}
                             setProducts={setProducts}
                         />
                     )

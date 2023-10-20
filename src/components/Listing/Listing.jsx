@@ -40,7 +40,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
                 .then(res => {
                     const product = res.data.find(product => product.title === title)
                     axios
-                        .delete(`${url}/products/${product.id}`, {
+                        .delete(`${url}/products/${product._id}`, {
                             headers: {
                                 Authorization: `Bearer ${localStorage.getItem('token')}`
                             }
