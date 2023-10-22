@@ -5,6 +5,7 @@ import burger from '../../assets/icons/burger.svg'
 import login from '../../assets/icons/login.svg'
 import favorites from '../../assets/icons/favorites.svg'
 import logout from '../../assets/icons/logout.svg'
+import bmc from '../../assets/icons/bmc-logo.svg'
 
 export function BurgerMenu({isLogged, logOut}){
 
@@ -32,6 +33,10 @@ export function BurgerMenu({isLogged, logOut}){
                     <p className='menu__item-text'>FAVORITES</p>
                 </div>
                 }
+                <a href="https://www.buymeacoffee.com/jpmm21" target='_blank' className="header__item">
+                    <img className='menu__item-icon' src={bmc} alt="signing" />
+                    <p className='menu__item-text'>BUY ME A COFFEE</p>
+                </a>
         </Menu>
     )
 }

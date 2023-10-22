@@ -4,6 +4,7 @@ import login from '../../assets/icons/login.svg'
 import logo from '../../assets/logos/Foogle_logo.png'
 import favorites from '../../assets/icons/favorites.svg'
 import logout from '../../assets/icons/logout.svg'
+import bmc from '../../assets/icons/bmc-logo.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import { useRef, useState } from 'react'
 
@@ -80,6 +81,10 @@ export function Header({item , isLogged, logOut, setFilter}){
                     <p className='home__item-text'>FAVORITES</p>
                 </div>
                 }   
+                <a href="https://www.buymeacoffee.com/jpmm21" target='_blank' className="header__item">
+                    <img className='home__item-icon' src={bmc} alt="signing" />
+                    <p className='home__item-text'>BUY ME A COFFEE</p>
+                </a>
                 </nav>
             </div>
             

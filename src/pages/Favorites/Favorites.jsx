@@ -18,7 +18,6 @@ export function Favorites(){
 
     const [isLogged, setIsLogged] = useState(false)
     const [products, setProducts] = useState([])
-    console.log(products)
     const [showArrowUp, setShowArrowUp] = useState(false);
     const [filter, setFilter] = useState('relevance')
 

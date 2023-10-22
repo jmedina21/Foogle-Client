@@ -7,6 +7,7 @@ import { BurgerMenu } from '../../components/Menu/BurgerMenu'
 import login from '../../assets/icons/login.svg'
 import favorites from '../../assets/icons/favorites.svg'
 import logout from '../../assets/icons/logout.svg'
+import bmc from '../../assets/icons/bmc-logo.svg'
 
 export function Home(){
 
@@ -65,6 +66,10 @@ export function Home(){
                     <p className='home__item-text'>FAVORITES</p>
                 </div>
                 }
+                <a href="https://www.buymeacoffee.com/jpmm21" target='_blank' className="header__item">
+                    <img className='home__item-icon' src={bmc} alt="signing" />
+                    <p className='home__item-text'>BUY ME A COFFEE</p>
+                </a>
             </nav>
             <div className='home__container'>
                 <img src={logo} alt="logo" className='home__logo' />
