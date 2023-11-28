@@ -6,7 +6,7 @@ import placeholder from '../../assets/images/noImage.svg'
 
 export function FavoriteItem({title, price, imageUrl,link, location, id, setProducts}){
 
-    const url = 'https://api.foogle.foo'
+    const url = import.meta.env.VITE_API_URL
 
     function removeProduct(){
         axios

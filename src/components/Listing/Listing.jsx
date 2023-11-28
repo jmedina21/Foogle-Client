@@ -6,7 +6,7 @@ export function Listing({title, price, imageUrl,link, location, isLogged}){
 
     const [liked, setLiked] = useState(false)
 
-    const url = 'https://api.foogle.foo'
+    const url = import.meta.env.VITE_API_URL
 
 
     function saveProduct(){

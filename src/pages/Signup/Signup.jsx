@@ -80,8 +80,7 @@ export function Signup(){
         })
     }
 
-    const url = 'https://api.foogle.foo'
-    // const url = 'http://localhost:2121/'
+    const url = import.meta.env.VITE_API_URL
 
     function handleLogin(e){
         e.preventDefault()

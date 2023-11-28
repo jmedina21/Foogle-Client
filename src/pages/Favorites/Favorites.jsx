@@ -11,7 +11,7 @@ import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
 
 export function Favorites(){
 
-    const url = 'https://api.foogle.foo'
+    const url = import.meta.env.VITE_API_URL
 
     const navigate = useNavigate()
     const item = ''
