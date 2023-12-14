@@ -42,20 +42,20 @@ export function Listing({title, price, imageUrl,link, location, isLogged}: Listi
                         location: location
                     }, {
                         headers: {
-                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                            Authorization: `Bearer ${sessionStorage.getItem('token')}`
                         }
                     })
             } else {
                 setLiked(!liked)
                 const res = await axios.get(`${url}/products`, {
                         headers: {
-                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                            Authorization: `Bearer ${sessionStorage.getItem('token')}`
                         }
                     })
                 const product = res.data.find((product:Product) => product.title === title)
                 await axios.delete(`${url}/products/${product._id}`, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${sessionStorage.getItem('token')}`
                     }
                 })
             }

@@ -47,7 +47,7 @@ export function Signup(){
             {theme: 'outline', size: 'large', text: 'continue_with', shape: 'circle'}
         )
 
-        if(localStorage.getItem('token') === 'notVerified'){
+        if(sessionStorage.getItem('token') === 'notVerified'){
             setNotification(true)
             setNotificationMessage('Thank you for verifying your email, please login')
         }
@@ -57,7 +57,7 @@ export function Signup(){
         const res = await axios.post(`${url}/login/token`, {
             token: response.credential
         })
-        localStorage.setItem('token', res.data.token)
+        sessionStorage.setItem('token', res.data.token)
         navigate('/')
     }
 
@@ -91,7 +91,7 @@ export function Signup(){
         e.preventDefault()
         try {
             const res = await axios.post(`${url}/login`, loginData)
-            localStorage.setItem('token', res.data.token)
+            sessionStorage.setItem('token', res.data.token)
             navigate('/')
         }catch(err:any){
                 setAlert(true)
@@ -118,11 +118,11 @@ export function Signup(){
                 email: signupData.email,
                 password: signupData.password
             })
-            localStorage.setItem('token', res.data.token)
+            sessionStorage.setItem('token', res.data.token)
             setAlert(false)
             setNotification(true)
             setNotificationMessage('Verification email has been sent, please check your email')
-            localStorage.setItem('token', 'notVerified')
+            sessionStorage.setItem('token', 'notVerified')
         }catch(err:any){
                 setAlert(true)
                 setAlertMessage(err.response.data)

@@ -31,7 +31,7 @@ export function Search(){
     const [filter, setFilter] = useState<Filter>('relevance')
 
     useEffect(() => {
-        if(localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined'){
+        if(sessionStorage.getItem('token') && sessionStorage.getItem('token') !== 'undefined'){
             setIsLogged(true)
         }
         const handleScroll = () => {
@@ -50,7 +50,7 @@ export function Search(){
     }, []);
 
     function logOut(){
-        localStorage.removeItem('token')
+        sessionStorage.removeItem('token')
         setIsLogged(false)
     }
 
@@ -87,7 +87,7 @@ export function Search(){
                         mergedListings.push(craigslistListings[i]);
                     }
                 }
-                
+
                 setListings(mergedListings);
                 setIsLoading(false);
             } catch (err) {

@@ -21,7 +21,7 @@ export function FavoriteItem({title, price, imageUrl,link, location, id, setProd
         try {
             await axios.delete(`${url}/products/${id}`, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${sessionStorage.getItem('token')}`
                 }
             })
             setProducts(

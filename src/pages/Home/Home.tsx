@@ -16,13 +16,13 @@ export function Home(){
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined'){
+        if(sessionStorage.getItem('token') && sessionStorage.getItem('token') !== 'undefined'){
             setIsLogged(true)
         }
     }, [])
     
     function logOut(){
-        localStorage.removeItem('token')
+        sessionStorage.removeItem('token')
         setIsLogged(false)
     }
 

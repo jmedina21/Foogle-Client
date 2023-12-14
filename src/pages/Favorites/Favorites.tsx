@@ -48,7 +48,7 @@ export function Favorites(){
     }, []);
 
     useEffect(() => {
-        if(!localStorage.getItem('token')){
+        if(!sessionStorage.getItem('token')){
             navigate('/') 
         }
     }, [isLogged])
@@ -56,11 +56,11 @@ export function Favorites(){
     useEffect(() => {
         async function getItems() {
             try {
-                if(localStorage.getItem('token')){
+                if(sessionStorage.getItem('token')){
                     setIsLogged(true)
                     const res = await axios.get(`${url}/products`, {
                         headers: {
-                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                            Authorization: `Bearer ${sessionStorage.getItem('token')}`
                         }
                     })
                     if(!res.data.length){
@@ -76,7 +76,7 @@ export function Favorites(){
     }, [])
 
     function logOut(){
-        localStorage.removeItem('token')
+        sessionStorage.removeItem('token')
         setIsLogged(false)
     }
 
