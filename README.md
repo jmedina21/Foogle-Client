@@ -30,6 +30,7 @@ Welcome to the front end of **Foogle.foo**! This React application, built with V
 - Vite
 - Sass
 - Axios
+- Typescript
 
 ## Getting Started
 
