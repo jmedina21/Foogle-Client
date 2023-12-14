@@ -6,6 +6,7 @@ import { BurgerMenu } from '../../components/Menu/BurgerMenu'
 import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
 import { useEffect, useState } from 'react'
 import { Skeleton } from '../../components/Skeleton/Skeleton'
+import { sortListings } from '../../utils/utils'
 import axios from 'axios'
 import arrowUp from '../../assets/icons/arrow-up.svg'
 import placeholder from '../../assets/images/noImage.svg'
@@ -99,30 +100,6 @@ export function Search(){
         return [...Array(n)].map((_item, i) => <Skeleton key={i} />);
     }
 
-    function getPriceValue(priceString:string | null, direction = 'asc') {
-        if (priceString === 'Free' || priceString === null) return 0;
-    
-        const prices = priceString.replace(/[$,\\-]/g, '').split(' to ');
-        const [minPrice, maxPrice] = prices;
-    
-        if (direction === 'asc') {
-            return parseFloat(minPrice || '0');
-        } else {
-            return parseFloat(maxPrice || minPrice || '0');
-        }
-    }
-    
-    function sortListings(listings:Listing[], filter:Filter) {
-        if (filter === 'relevance') {
-            return listings;
-        } else if (filter === 'priceAsc') {
-            return [...listings].sort((a, b) => getPriceValue(a.price) - getPriceValue(b.price));
-        } else if (filter === 'priceDesc') {
-            return [...listings].sort((a, b) => getPriceValue(b.price, 'desc') - getPriceValue(a.price, 'desc'));
-        }
-        return listings;
-    }
-    
     const sortedListings = sortListings(listings, filter);
 
     return (
