@@ -124,8 +124,8 @@ export function Signup(){
             setNotificationMessage('Verification email has been sent, please check your email')
             sessionStorage.setItem('token', 'notVerified')
         }catch(err:any){
-                setAlert(true)
-                setAlertMessage(err.response.data)
+            setAlert(true)
+            setAlertMessage(err.response.data)
         }
     }
 
