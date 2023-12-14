@@ -17,32 +17,19 @@ export function FavoriteItem({title, price, imageUrl,link, location, id, setProd
 
     const url = import.meta.env.VITE_API_URL
 
-    function removeProduct(){
-        axios
-            .delete(`${url}/products/${id}`, {
+    async function removeProduct(){
+        try {
+            await axios.delete(`${url}/products/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            .then(_res => {
-                axios
-                    .get(`${url}/products`, {
-                        headers: {
-                            Authorization: `Bearer ${localStorage.getItem('token')}`
-                        }
-                    })
-                    .then(res => {
-                        if(!res.data.length){
-                            setProducts([])
-                            return
-                        }
-                        setProducts(res.data)
-                    })
-                    .catch(err => {
-                        console.error(err)
-                    })
-            })
-            .catch(err => console.error(err))
+            setProducts(
+                (prev: any) => prev.filter((product: any) => product._id !== id)
+            )
+        }catch(err){
+            console.error(err)
+        }
     }
 
     return (

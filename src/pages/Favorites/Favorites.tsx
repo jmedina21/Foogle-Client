@@ -54,24 +54,25 @@ export function Favorites(){
     }, [isLogged])
 
     useEffect(() => {
-        if(localStorage.getItem('token')){
-            setIsLogged(true)
-            axios
-                .get(`${url}/products`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                })
-                .then(res => {
+        async function getItems() {
+            try {
+                if(localStorage.getItem('token')){
+                    setIsLogged(true)
+                    const res = await axios.get(`${url}/products`, {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
                     if(!res.data.length){
                         setProducts([])
                         return
                     }
-                    setProducts(res.data)})
-                .catch(err => {
-                    console.error(err)
-                })
+                }
+            }catch(err){
+                console.error(err)
+            }
         }
+        getItems()
     }, [])
 
     function logOut(){

@@ -26,45 +26,41 @@ export function Listing({title, price, imageUrl,link, location, isLogged}: Listi
 
     const url = import.meta.env.VITE_API_URL
 
-    function saveProduct(){
+    async function saveProduct(){
         if(!isLogged){
             alert('You need to be logged in to save products')
             return
         }
-        if(!liked){
-            setLiked(!liked)
-            axios
-                .post(`${url}/products`, {
-                    title: title,
-                    price: price,
-                    image: imageUrl,
-                    link: link,
-                    location: location
-                }, {
+        try{
+            if(!liked){
+                setLiked(!liked)
+                await axios.post(`${url}/products`, {
+                        title: title,
+                        price: price,
+                        image: imageUrl,
+                        link: link,
+                        location: location
+                    }, {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
+            } else {
+                setLiked(!liked)
+                const res = await axios.get(`${url}/products`, {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
+                const product = res.data.find((product:Product) => product.title === title)
+                await axios.delete(`${url}/products/${product._id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
-                .catch(err => console.error(err))
-        } else {
-            setLiked(!liked)
-            axios
-                .get(`${url}/products`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                })
-                .then(res => {
-                    const product = res.data.find((product:Product) => product.title === title)
-                    axios
-                        .delete(`${url}/products/${product._id}`, {
-                            headers: {
-                                Authorization: `Bearer ${localStorage.getItem('token')}`
-                            }
-                        })
-                        .catch(err => console.error(err))
-                })
-                .catch(err => console.error(err))
+            }
+        }catch(err){
+            console.error(err)
         }
     }
 

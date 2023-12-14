@@ -53,16 +53,12 @@ export function Signup(){
         }
     }, [])
 
-    function handleCredentialResponse(response: ResponseData){
-        console.log(response)
-        axios
-            .post(`${url}/login/token`, {
-                token: response.credential
-                })
-            .then(res => {
-                localStorage.setItem('token', res.data.token)
-                navigate('/')
-            })
+    async function handleCredentialResponse(response: ResponseData){
+        const res = await axios.post(`${url}/login/token`, {
+            token: response.credential
+        })
+        localStorage.setItem('token', res.data.token)
+        navigate('/')
     }
 
     function handleNewAccount(){
@@ -91,21 +87,19 @@ export function Signup(){
 
     const url = import.meta.env.VITE_API_URL
 
-    function handleLogin(e: React.FormEvent<HTMLFormElement>){
+    async function handleLogin(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
-        axios
-            .post(`${url}/login`, loginData)
-            .then(res => {
-                localStorage.setItem('token', res.data.token)
-                navigate('/')
-            })
-            .catch(err => {
+        try {
+            const res = await axios.post(`${url}/login`, loginData)
+            localStorage.setItem('token', res.data.token)
+            navigate('/')
+        }catch(err:any){
                 setAlert(true)
                 setAlertMessage(err.response.data)                
-            })
+            }
     }
 
-    function handleSignup(e: React.FormEvent<HTMLFormElement>){
+    async function handleSignup(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
         if (!emailValidation()){
             setAlert(true)
@@ -119,22 +113,20 @@ export function Signup(){
             setAlertMessage('Passwords do not match')
             return
         }else setPasswordAlert(false)
-        axios
-            .post(`${url}/signup`, {
+        try {
+            const res = await axios.post(`${url}/signup`, {
                 email: signupData.email,
                 password: signupData.password
             })
-            .then(res => {
-                localStorage.setItem('token', res.data.token)
-                setAlert(false)
-                setNotification(true)
-                setNotificationMessage('Verification email has been sent, please check your email')
-                localStorage.setItem('token', 'notVerified')
-            })
-            .catch(err => {
+            localStorage.setItem('token', res.data.token)
+            setAlert(false)
+            setNotification(true)
+            setNotificationMessage('Verification email has been sent, please check your email')
+            localStorage.setItem('token', 'notVerified')
+        }catch(err:any){
                 setAlert(true)
                 setAlertMessage(err.response.data)
-            })
+        }
     }
 
     function passwordMatch(){

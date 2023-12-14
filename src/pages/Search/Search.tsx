@@ -57,20 +57,21 @@ export function Search(){
     const url = import.meta.env.VITE_API_URL
 
     useEffect(() => {
-        setListings([])
-        setIsLoading(true)
-        let promises = []
-        promises.push(
-            axios(`${url}/listings/facebook?search=${item}`),
-            axios(`${url}/listings/ebay?search=${item}`),
-            axios(`${url}/listings/craigslist?search=${item}`)
-        )
-        Promise.all(promises)
-            .then((res) => {
-                const facebookListings = res[0].data;
-                const ebayListings = res[1].data;
-                const craigslistListings = res[2].data;
-
+        async function fetchListings() {
+            try {
+                setListings([]);
+                setIsLoading(true);
+    
+                const responses = await Promise.all([
+                    axios(`${url}/listings/facebook?search=${item}`),
+                    axios(`${url}/listings/ebay?search=${item}`),
+                    axios(`${url}/listings/craigslist?search=${item}`)
+                ]);
+    
+                const facebookListings = responses[0].data;
+                const ebayListings = responses[1].data;
+                const craigslistListings = responses[2].data;
+    
                 const maxLength = Math.max(facebookListings.length, ebayListings.length, craigslistListings.length);
     
                 let mergedListings = [];
@@ -86,14 +87,17 @@ export function Search(){
                         mergedListings.push(craigslistListings[i]);
                     }
                 }
-    
+                
                 setListings(mergedListings);
                 setIsLoading(false);
-            })
-            .catch((err) => {
+            } catch (err) {
                 console.error(err);
-            });
+            }
+        };
+    
+        fetchListings();
     }, [item]);
+    
     
 
     function renderSkeletons(n:number) {
