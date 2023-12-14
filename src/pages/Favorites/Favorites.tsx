@@ -1,12 +1,13 @@
 import './Favorites.scss'
 import axios from 'axios'
+import arrowUp from '../../assets/icons/arrow-up.svg'
 import { useEffect, useState } from 'react'
 import { Header } from '../../components/Header/Header'
 import { BurgerMenu } from '../../components/Menu/BurgerMenu'
 import { FavoriteItem } from '../../components/FavoriteItem/FavoriteItem'
 import { useNavigate } from 'react-router-dom'
-import arrowUp from '../../assets/icons/arrow-up.svg'
 import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
+import { Skeleton } from '../../components/Skeleton/Skeleton'
 
 interface Product {
     _id: string
@@ -30,6 +31,7 @@ export function Favorites(){
     const [products, setProducts] = useState<Product[]>([])
     const [showArrowUp, setShowArrowUp] = useState(false);
     const [filter, setFilter] = useState<Filter>('relevance')
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -68,6 +70,7 @@ export function Favorites(){
                         return
                     }
                     setProducts(res.data)
+                    setIsLoading(false)
                 }
             }catch(err){
                 console.error(err)
@@ -107,12 +110,19 @@ export function Favorites(){
     
     const sortedProducts = sortProducts(products, filter);
 
+    function renderSkeletons(n:number) {
+        return [...Array(n)].map((_item, i) => <Skeleton key={i} />);
+    }
+
     return (
         <main className='favorites'>
             <BurgerMenu isLogged={isLogged} logOut={logOut}/>
             <Header item={item} isLogged={isLogged} logOut={logOut} setFilter={setFilter}/>
             <div className='favorites__container'>
-                {!products.length ?
+                {isLoading ?
+                    renderSkeletons(18)
+                :
+                !products.length ?
                 <div className='favorites__empty-container'>
                     <EmptyBox />
                     <p className='favorites__message'>No products found</p>
