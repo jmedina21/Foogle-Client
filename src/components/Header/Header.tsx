@@ -6,19 +6,25 @@ import favorites from '../../assets/icons/favorites.svg'
 import logout from '../../assets/icons/logout.svg'
 import bmc from '../../assets/icons/bmc-logo.svg'
 import { Link, useNavigate } from 'react-router-dom'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
-export function Header({item , isLogged, logOut, setFilter}){
+interface HeaderProps {
+    item: string | undefined
+    isLogged: boolean
+    logOut: React.MouseEventHandler<HTMLDivElement>
+    setFilter: Function
+}
+
+export function Header({item , isLogged, logOut, setFilter}: HeaderProps){
 
     const [search, setSearch] = useState(item)
     const navigate = useNavigate()
-    const inputRef = useRef(null)
 
-    function handleChange(e){
+    function handleChange(e:React.ChangeEvent<HTMLInputElement>){
         setSearch(e.target.value)
     }
 
-    function handleFocus(e) {
+    function handleFocus(e:React.FocusEvent<HTMLInputElement>) {
         e.target.select();
     }
     
@@ -26,13 +32,13 @@ export function Header({item , isLogged, logOut, setFilter}){
         navigate(`/search/${search}`)
     }
 
-    function searchOnKeyDown(e){
+    function searchOnKeyDown(e:React.KeyboardEvent<HTMLInputElement>){
         if(e.key === 'Enter'){
             navigate(`/search/${search}`)
         }
     }
 
-    function handleSort(e){
+    function handleSort(e:React.ChangeEvent<HTMLSelectElement>){
         setFilter(e.target.value)
     }
 

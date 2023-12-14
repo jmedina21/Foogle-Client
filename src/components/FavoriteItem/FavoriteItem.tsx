@@ -3,8 +3,17 @@ import remove from '../../assets/icons/remove.svg'
 import axios from 'axios'
 import placeholder from '../../assets/images/noImage.svg'
 
+interface FavoriteItemProps {
+    title: string
+    price: string
+    imageUrl: string
+    link: string
+    location: string
+    id: string
+    setProducts: Function
+}
 
-export function FavoriteItem({title, price, imageUrl,link, location, id, setProducts}){
+export function FavoriteItem({title, price, imageUrl,link, location, id, setProducts}: FavoriteItemProps){
 
     const url = import.meta.env.VITE_API_URL
 

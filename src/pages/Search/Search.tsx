@@ -3,21 +3,31 @@ import { Header } from '../../components/Header/Header'
 import { Listing } from '../../components/Listing/Listing'
 import { useParams } from 'react-router-dom'
 import { BurgerMenu } from '../../components/Menu/BurgerMenu'
-import axios from 'axios'
+import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
 import { useEffect, useState } from 'react'
 import { Skeleton } from '../../components/Skeleton/Skeleton'
+import axios from 'axios'
 import arrowUp from '../../assets/icons/arrow-up.svg'
 import placeholder from '../../assets/images/noImage.svg'
-import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
+
+interface Listing {
+    imageUrl: string | null
+    link: string
+    price: string
+    title: string
+    location: string | null
+}
+
+type Filter = 'relevance' | 'priceAsc' | 'priceDesc'
 
 export function Search(){
 
     const {item} = useParams()
-    const [listings, setListings] = useState([])
+    const [listings, setListings] = useState<Listing[]>([])
     const [isLogged, setIsLogged] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [showArrowUp, setShowArrowUp] = useState(false);
-    const [filter, setFilter] = useState('relevance')
+    const [filter, setFilter] = useState<Filter>('relevance')
 
     useEffect(() => {
         if(localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined'){
@@ -47,7 +57,7 @@ export function Search(){
 
     useEffect(() => {
         setListings([])
-         setIsLoading(true)
+        setIsLoading(true)
         let promises = []
         promises.push(
             axios(`${url}/listings/facebook?search=${item}`),
@@ -85,24 +95,24 @@ export function Search(){
     }, [item]);
     
 
-    function renderSkeletons(n) {
+    function renderSkeletons(n:number) {
         return [...Array(n)].map((_item, i) => <Skeleton key={i} />);
     }
 
-    function getPriceValue(priceString, direction = 'asc') {
+    function getPriceValue(priceString:string | null, direction = 'asc') {
         if (priceString === 'Free' || priceString === null) return 0;
     
         const prices = priceString.replace(/[$,\\-]/g, '').split(' to ');
         const [minPrice, maxPrice] = prices;
     
         if (direction === 'asc') {
-            return parseFloat(minPrice || 0);
+            return parseFloat(minPrice || '0');
         } else {
-            return parseFloat(maxPrice || minPrice || 0);
+            return parseFloat(maxPrice || minPrice || '0');
         }
     }
     
-    function sortListings(listings, filter) {
+    function sortListings(listings:Listing[], filter:Filter) {
         if (filter === 'relevance') {
             return listings;
         } else if (filter === 'priceAsc') {

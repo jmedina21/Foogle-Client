@@ -7,7 +7,12 @@ import favorites from '../../assets/icons/favorites.svg'
 import logout from '../../assets/icons/logout.svg'
 import bmc from '../../assets/icons/bmc-logo.svg'
 
-export function BurgerMenu({isLogged, logOut}){
+interface BurgerMenuProps {
+    isLogged: boolean
+    logOut: React.MouseEventHandler<HTMLDivElement>
+}
+
+export function BurgerMenu({isLogged, logOut}: BurgerMenuProps){
 
     return (
         <Menu right width={ '170px' }  customBurgerIcon={ <img src={burger} /> }>

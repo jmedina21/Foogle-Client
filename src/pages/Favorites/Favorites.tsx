@@ -8,6 +8,16 @@ import { useNavigate } from 'react-router-dom'
 import arrowUp from '../../assets/icons/arrow-up.svg'
 import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
 
+interface Product {
+    _id: string
+    title: string
+    price: string
+    image: string
+    link: string
+    location: string
+}
+
+type Filter = 'relevance' | 'priceAsc' | 'priceDesc'
 
 export function Favorites(){
 
@@ -17,9 +27,9 @@ export function Favorites(){
     const item = ''
 
     const [isLogged, setIsLogged] = useState(false)
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState<Product[]>([])
     const [showArrowUp, setShowArrowUp] = useState(false);
-    const [filter, setFilter] = useState('relevance')
+    const [filter, setFilter] = useState<Filter>('relevance')
 
     useEffect(() => {
         const handleScroll = () => {
@@ -69,20 +79,20 @@ export function Favorites(){
         setIsLogged(false)
     }
 
-    function getPriceValue(priceString, direction = 'asc') {
+    function getPriceValue(priceString:string | null, direction = 'asc') {
         if (priceString === 'Free' || priceString === null) return 0;
     
         const prices = priceString.replace(/[$,\\-]/g, '').split(' to ');
         const [minPrice, maxPrice] = prices;
     
         if (direction === 'asc') {
-            return parseFloat(minPrice || 0);
+            return parseFloat(minPrice || '0');
         } else {
-            return parseFloat(maxPrice || minPrice || 0);
+            return parseFloat(maxPrice || minPrice || '0');
         }
     }
     
-    function sortProducts(products, filter) {
+    function sortProducts(products:Product[], filter:Filter) {
         if (filter === 'relevance') {
             return products;
         } else if (filter === 'priceAsc') {

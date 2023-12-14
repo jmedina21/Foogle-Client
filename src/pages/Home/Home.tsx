@@ -26,7 +26,7 @@ export function Home(){
         setIsLogged(false)
     }
 
-    function handleChange(e){
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>){
         setSearch(e.target.value)
     }
 
@@ -34,7 +34,7 @@ export function Home(){
         navigate(`search/${search}`)
     }
 
-    function searchOnKeyDown(e){
+    function searchOnKeyDown(e: React.KeyboardEvent<HTMLInputElement>){
         if(e.key === 'Enter'){
             navigate(`search/${search}`)
         }

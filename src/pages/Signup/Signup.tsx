@@ -1,9 +1,17 @@
 import './Signup.scss'
-import { useEffect, useState } from 'react'
 import logo from '../../assets/logos/Foogle_logo.png'
 import back from '../../assets/icons/back.svg'
-import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+declare const google: any;
+
+interface ResponseData {
+    clientId: string
+    client_id: string
+    credential: string
+    select_by: string
+}
 
 export function Signup(){
 
@@ -45,7 +53,8 @@ export function Signup(){
         }
     }, [])
 
-    function handleCredentialResponse(response){
+    function handleCredentialResponse(response: ResponseData){
+        console.log(response)
         axios
             .post(`${url}/login/token`, {
                 token: response.credential
@@ -64,7 +73,7 @@ export function Signup(){
         setPasswordAlert(false)
     }
 
-    function handleLoginChange(e){
+    function handleLoginChange(e: React.ChangeEvent<HTMLInputElement>){
         const { name, value } = e.target
         setLoginData({
             ...loginData,
@@ -72,7 +81,7 @@ export function Signup(){
         })
     }
 
-    function handleSignupChange(e){
+    function handleSignupChange(e: React.ChangeEvent<HTMLInputElement>){
         const { name, value } = e.target
         setSignupData({
             ...signupData,
@@ -82,7 +91,7 @@ export function Signup(){
 
     const url = import.meta.env.VITE_API_URL
 
-    function handleLogin(e){
+    function handleLogin(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
         axios
             .post(`${url}/login`, loginData)
@@ -96,7 +105,7 @@ export function Signup(){
             })
     }
 
-    function handleSignup(e){
+    function handleSignup(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
         if (!emailValidation()){
             setAlert(true)
