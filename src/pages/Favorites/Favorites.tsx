@@ -67,6 +67,7 @@ export function Favorites(){
                         setProducts([])
                         return
                     }
+                    setProducts(res.data)
                 }
             }catch(err){
                 console.error(err)
