@@ -1,37 +1,36 @@
-import './Favorites.scss'
-import axios from 'axios'
-import arrowUp from '../../assets/icons/arrow-up.svg'
-import { useEffect, useState } from 'react'
-import { Header } from '../../components/Header/Header'
-import { BurgerMenu } from '../../components/Menu/BurgerMenu'
-import { FavoriteItem } from '../../components/FavoriteItem/FavoriteItem'
-import { useNavigate } from 'react-router-dom'
-import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
-import { Skeleton } from '../../components/Skeleton/Skeleton'
+import "./Favorites.scss";
+import axios from "axios";
+import arrowUp from "../../assets/icons/arrow-up.svg";
+import { useEffect, useState } from "react";
+import { Header } from "../../components/Header/Header";
+import { BurgerMenu } from "../../components/Menu/BurgerMenu";
+import { FavoriteItem } from "../../components/FavoriteItem/FavoriteItem";
+import { useNavigate } from "react-router-dom";
+import { EmptyBox } from "../../components/EmptyBox/EmptyBox";
+import { Skeleton } from "../../components/Skeleton/Skeleton";
 
 interface Product {
-    _id: string
-    title: string
-    price: string
-    image: string
-    link: string
-    location: string
+    _id: string;
+    title: string;
+    price: string;
+    image: string;
+    link: string;
+    location: string;
 }
 
-type Filter = 'relevance' | 'priceAsc' | 'priceDesc'
+type Filter = "relevance" | "priceAsc" | "priceDesc";
 
-export function Favorites(){
+export function Favorites() {
+    const url = import.meta.env.VITE_API_URL;
 
-    const url = import.meta.env.VITE_API_URL
+    const navigate = useNavigate();
+    const item = "";
 
-    const navigate = useNavigate()
-    const item = ''
-
-    const [isLogged, setIsLogged] = useState(false)
-    const [products, setProducts] = useState<Product[]>([])
+    const [isLogged, setIsLogged] = useState(false);
+    const [products, setProducts] = useState<Product[]>([]);
     const [showArrowUp, setShowArrowUp] = useState(false);
-    const [filter, setFilter] = useState<Filter>('relevance')
-    const [isLoading, setIsLoading] = useState(true)
+    const [filter, setFilter] = useState<Filter>("relevance");
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,110 +41,117 @@ export function Favorites(){
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
     useEffect(() => {
-        if(!sessionStorage.getItem('token')){
-            navigate('/') 
+        if (!sessionStorage.getItem("token")) {
+            navigate("/");
         }
-    }, [isLogged])
+    }, [isLogged]);
 
     useEffect(() => {
         async function getItems() {
             try {
-                if(sessionStorage.getItem('token')){
-                    setIsLogged(true)
+                if (sessionStorage.getItem("token")) {
+                    setIsLogged(true);
                     const res = await axios.get(`${url}/products`, {
                         headers: {
-                            Authorization: `Bearer ${sessionStorage.getItem('token')}`
-                        }
-                    })
-                    if(!res.data.length){
-                        setProducts([])
-                        return
+                            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                        },
+                    });
+                    if (!res.data.length) {
+                        setProducts([]);
                     }
-                    setProducts(res.data)
-                    setIsLoading(false)
+                    setProducts(res.data);
                 }
-            }catch(err){
-                console.error(err)
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setIsLoading(false);
             }
         }
-        getItems()
-    }, [])
+        getItems();
+    }, []);
 
-    function logOut(){
-        sessionStorage.removeItem('token')
-        setIsLogged(false)
+    function logOut() {
+        sessionStorage.removeItem("token");
+        setIsLogged(false);
     }
 
-    function getPriceValue(priceString:string | null, direction = 'asc') {
-        if (priceString === 'Free' || priceString === null) return 0;
-    
-        const prices = priceString.replace(/[$,\\-]/g, '').split(' to ');
+    function getPriceValue(priceString: string | null, direction = "asc") {
+        if (priceString === "Free" || priceString === null) return 0;
+
+        const prices = priceString.replace(/[$,\\-]/g, "").split(" to ");
         const [minPrice, maxPrice] = prices;
-    
-        if (direction === 'asc') {
-            return parseFloat(minPrice || '0');
+
+        if (direction === "asc") {
+            return parseFloat(minPrice || "0");
         } else {
-            return parseFloat(maxPrice || minPrice || '0');
+            return parseFloat(maxPrice || minPrice || "0");
         }
     }
-    
-    function sortProducts(products:Product[], filter:Filter) {
-        if (filter === 'relevance') {
+
+    function sortProducts(products: Product[], filter: Filter) {
+        if (filter === "relevance") {
             return products;
-        } else if (filter === 'priceAsc') {
+        } else if (filter === "priceAsc") {
             return [...products].sort((a, b) => getPriceValue(a.price) - getPriceValue(b.price));
-        } else if (filter === 'priceDesc') {
-            return [...products].sort((a, b) => getPriceValue(b.price, 'desc') - getPriceValue(a.price, 'desc'));
+        } else if (filter === "priceDesc") {
+            return [...products].sort((a, b) => getPriceValue(b.price, "desc") - getPriceValue(a.price, "desc"));
         }
         return products;
     }
-    
+
     const sortedProducts = sortProducts(products, filter);
 
-    function renderSkeletons(n:number) {
+    function renderSkeletons(n: number) {
         return [...Array(n)].map((_item, i) => <Skeleton key={i} />);
     }
 
+    console.log(!products.length);
+
     return (
-        <main className='favorites'>
-            <BurgerMenu isLogged={isLogged} logOut={logOut}/>
-            <Header item={item} isLogged={isLogged} logOut={logOut} setFilter={setFilter}/>
-            <div className='favorites__container'>
-                {isLoading ?
+        <main className="favorites">
+            <BurgerMenu isLogged={isLogged} logOut={logOut} />
+            <Header item={item} isLogged={isLogged} logOut={logOut} setFilter={setFilter} />
+            <div className="favorites__container">
+                {isLoading ? (
                     renderSkeletons(18)
-                :
-                !products.length ?
-                <div className='favorites__empty-container'>
-                    <EmptyBox />
-                    <p className='favorites__message'>No products found</p>
-                </div>
-                :
-                sortedProducts.map((product) => {
-                    return (
-                        <FavoriteItem 
-                            key={product._id}
-                            title={product.title}
-                            price={product.price}
-                            imageUrl={product.image}
-                            link={product.link}
-                            location={product.location}
-                            id={product._id}
-                            setProducts={setProducts}
-                        />
-                    )
-                })}
+                ) : !products.length ? (
+                    <div className="favorites__empty-container">
+                        <EmptyBox />
+                        <p className="favorites__message">No products found</p>
+                    </div>
+                ) : (
+                    sortedProducts.map((product) => {
+                        return (
+                            <FavoriteItem
+                                key={product._id}
+                                title={product.title}
+                                price={product.price}
+                                imageUrl={product.image}
+                                link={product.link}
+                                location={product.location}
+                                id={product._id}
+                                setProducts={setProducts}
+                            />
+                        );
+                    })
+                )}
             </div>
             {showArrowUp && (
-                <img src={arrowUp} alt="arrow up" className="arrow-up" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
+                <img
+                    src={arrowUp}
+                    alt="arrow up"
+                    className="arrow-up"
+                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                />
             )}
         </main>
-    )
+    );
 }

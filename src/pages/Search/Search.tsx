@@ -1,38 +1,37 @@
-import './Search.scss'
-import { Header } from '../../components/Header/Header'
-import { Listing } from '../../components/Listing/Listing'
-import { useParams } from 'react-router-dom'
-import { BurgerMenu } from '../../components/Menu/BurgerMenu'
-import { EmptyBox } from '../../components/EmptyBox/EmptyBox'
-import { useEffect, useState } from 'react'
-import { Skeleton } from '../../components/Skeleton/Skeleton'
-import { sortListings } from '../../utils/utils'
-import axios from 'axios'
-import arrowUp from '../../assets/icons/arrow-up.svg'
-import placeholder from '../../assets/images/noImage.svg'
+import "./Search.scss";
+import { Header } from "../../components/Header/Header";
+import { Listing } from "../../components/Listing/Listing";
+import { useParams } from "react-router-dom";
+import { BurgerMenu } from "../../components/Menu/BurgerMenu";
+import { EmptyBox } from "../../components/EmptyBox/EmptyBox";
+import { useEffect, useState } from "react";
+import { Skeleton } from "../../components/Skeleton/Skeleton";
+import { sortListings } from "../../utils/utils";
+import axios from "axios";
+import arrowUp from "../../assets/icons/arrow-up.svg";
+import placeholder from "../../assets/images/noImage.svg";
 
 interface Listing {
-    imageUrl: string | null
-    link: string
-    price: string
-    title: string
-    location: string | null
+    imageUrl: string | null;
+    link: string;
+    price: string;
+    title: string;
+    location: string | null;
 }
 
-type Filter = 'relevance' | 'priceAsc' | 'priceDesc'
+type Filter = "relevance" | "priceAsc" | "priceDesc";
 
-export function Search(){
-
-    const {item} = useParams()
-    const [listings, setListings] = useState<Listing[]>([])
-    const [isLogged, setIsLogged] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
+export function Search() {
+    const { item } = useParams();
+    const [listings, setListings] = useState<Listing[]>([]);
+    const [isLogged, setIsLogged] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [showArrowUp, setShowArrowUp] = useState(false);
-    const [filter, setFilter] = useState<Filter>('relevance')
+    const [filter, setFilter] = useState<Filter>("relevance");
 
     useEffect(() => {
-        if(sessionStorage.getItem('token') && sessionStorage.getItem('token') !== 'undefined'){
-            setIsLogged(true)
+        if (sessionStorage.getItem("token") && sessionStorage.getItem("token") !== "undefined") {
+            setIsLogged(true);
         }
         const handleScroll = () => {
             if (window.scrollY > 300) {
@@ -42,40 +41,40 @@ export function Search(){
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
-    function logOut(){
-        sessionStorage.removeItem('token')
-        setIsLogged(false)
+    function logOut() {
+        sessionStorage.removeItem("token");
+        setIsLogged(false);
     }
 
-    const url = import.meta.env.VITE_API_URL
+    const url = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         async function fetchListings() {
             try {
                 setListings([]);
                 setIsLoading(true);
-    
+
                 const responses = await Promise.all([
                     axios(`${url}/listings/facebook?search=${item}`),
                     axios(`${url}/listings/ebay?search=${item}`),
-                    axios(`${url}/listings/craigslist?search=${item}`)
+                    axios(`${url}/listings/craigslist?search=${item}`),
                 ]);
-    
+
                 const facebookListings = responses[0].data;
                 const ebayListings = responses[1].data;
                 const craigslistListings = responses[2].data;
-    
+
                 const maxLength = Math.max(facebookListings.length, ebayListings.length, craigslistListings.length);
-    
+
                 let mergedListings = [];
-    
+
                 for (let i = 0; i < maxLength; i++) {
                     if (i < facebookListings.length) {
                         mergedListings.push(facebookListings[i]);
@@ -93,14 +92,12 @@ export function Search(){
             } catch (err) {
                 console.error(err);
             }
-        };
-    
+        }
+
         fetchListings();
     }, [item]);
-    
-    
 
-    function renderSkeletons(n:number) {
+    function renderSkeletons(n: number) {
         return [...Array(n)].map((_item, i) => <Skeleton key={i} />);
     }
 
@@ -108,36 +105,40 @@ export function Search(){
 
     return (
         <main>
-            <BurgerMenu isLogged={isLogged} logOut={logOut}/>
-            <Header item={item} isLogged={isLogged} logOut={logOut} setFilter={setFilter}/>
+            <BurgerMenu isLogged={isLogged} logOut={logOut} />
+            <Header item={item} isLogged={isLogged} logOut={logOut} setFilter={setFilter} />
             <div className="listings">
-                {isLoading ?
+                {isLoading ? (
                     renderSkeletons(18)
-                    :
-                    !listings.length ?
-                    <div className='listings__empty-container' >
+                ) : !listings.length ? (
+                    <div className="listings__empty-container">
                         <EmptyBox />
-                        <p className='listings__message'>No products found with this description</p>
+                        <p className="listings__message">No products found with this description</p>
                     </div>
-                :
-                sortedListings.map((listing, index) => {
-                return (
-                    <Listing 
-                        key={index}
-                        title={listing.title}
-                        price={listing.price === null ? 'Free' : listing.price}
-                        imageUrl={!listing.imageUrl ? placeholder : listing.imageUrl}
-                        link={listing.link}
-                        location={listing.location}
-                        isLogged={isLogged}
-                    />
-                )
-            })
-            }
+                ) : (
+                    sortedListings.map((listing, index) => {
+                        return (
+                            <Listing
+                                key={index}
+                                title={listing.title}
+                                price={listing.price === null ? "Free" : listing.price}
+                                imageUrl={!listing.imageUrl ? placeholder : listing.imageUrl}
+                                link={listing.link}
+                                location={listing.location}
+                                isLogged={isLogged}
+                            />
+                        );
+                    })
+                )}
             </div>
             {showArrowUp && (
-                <img src={arrowUp} alt="arrow up" className="arrow-up" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
+                <img
+                    src={arrowUp}
+                    alt="arrow up"
+                    className="arrow-up"
+                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                />
             )}
         </main>
-    )
+    );
 }
